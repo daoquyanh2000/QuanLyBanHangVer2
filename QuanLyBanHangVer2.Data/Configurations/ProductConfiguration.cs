@@ -9,15 +9,21 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHangVer2.Data.Configurations
 {
-    public class ProductInCategoryConfiguration : IEntityTypeConfiguration<ProductInCategory>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
 
-        public void Configure(EntityTypeBuilder<ProductInCategory> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.ToTable("ProductInCategories");
-            builder.HasKey(x => new { x.CategoryId,x.ProductId});
-            builder.HasOne(x => x.Product).WithMany(x => x.ProductInCategories);
-            builder.HasOne(x => x.Category).WithMany(x => x.ProductInCategories);
+            builder.ToTable("Products");
+            builder.HasKey(x => x.Id);
+            builder.Property(x=> x.Id).UseIdentityColumn();
+            builder.Property(x => x.Price).IsRequired();
+
+            builder.Property(x => x.OriginalPrice).IsRequired();
+
+            builder.Property(x => x.Stock).IsRequired().HasDefaultValue(0);
+
+            builder.Property(x => x.ViewCount).IsRequired().HasDefaultValue(0);
         }
     }
 }

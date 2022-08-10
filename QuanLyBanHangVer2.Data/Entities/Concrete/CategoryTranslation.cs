@@ -2,7 +2,7 @@
 
 namespace QuanLyBanHangVer2.Data.Entities.Concrete
 {
-    public class CategoryTranslation
+    public class CategoryTranslation 
     {
         public int Id { set; get; }
         public int CategoryId { set; get; }

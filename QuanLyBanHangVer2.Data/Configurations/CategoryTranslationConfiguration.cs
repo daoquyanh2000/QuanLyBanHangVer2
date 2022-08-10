@@ -22,7 +22,6 @@ namespace QuanLyBanHangVer2.Data.Configurations
 
             builder.HasOne(x => x.Category).WithMany(x => x.CategoryTranslations)
                 .HasForeignKey(x => x.CategoryId);
-
         }
     }
 }
