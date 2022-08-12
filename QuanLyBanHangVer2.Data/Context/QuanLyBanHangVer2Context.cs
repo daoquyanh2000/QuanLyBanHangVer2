@@ -30,6 +30,8 @@ namespace QuanLyBanHangVer2.Data.EF
             modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+
         }
         public DbSet<AppConfig> AppConfigs { get; set; }
         public DbSet<Cart> Carts { get; set; }
@@ -44,5 +46,6 @@ namespace QuanLyBanHangVer2.Data.EF
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
         public DbSet<Promotion > Promotions { get; set; }
         public DbSet<Transaction > Transactions { get; set; }
+        public DbSet<ProductImage > ProductImages { get; set; }
     }
 }

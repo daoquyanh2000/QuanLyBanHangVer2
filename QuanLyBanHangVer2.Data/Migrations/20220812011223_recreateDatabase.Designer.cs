@@ -10,8 +10,8 @@ using QuanLyBanHangVer2.Data.EF;
 namespace QuanLyBanHangVer2.Data.Migrations
 {
     [DbContext(typeof(QuanLyBanHangVer2Context))]
-    [Migration("20220810023839_intial-database")]
-    partial class intialdatabase
+    [Migration("20220812011223_recreateDatabase")]
+    partial class recreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -193,7 +193,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 8, 10, 9, 38, 39, 107, DateTimeKind.Local).AddTicks(180));
+                        .HasDefaultValue(new DateTime(2022, 8, 12, 8, 12, 22, 504, DateTimeKind.Local).AddTicks(3740));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -268,9 +268,6 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("SeoAlias")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -287,6 +284,34 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("QuanLyBanHangVer2.Data.Entities.Concrete.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("QuanLyBanHangVer2.Data.Entities.Concrete.ProductInCategory", b =>
@@ -473,6 +498,17 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("QuanLyBanHangVer2.Data.Entities.Concrete.ProductImage", b =>
+                {
+                    b.HasOne("QuanLyBanHangVer2.Data.Entities.Concrete.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("QuanLyBanHangVer2.Data.Entities.Concrete.ProductInCategory", b =>
                 {
                     b.HasOne("QuanLyBanHangVer2.Data.Entities.Concrete.Category", "Category")
@@ -533,6 +569,8 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Navigation("Carts");
 
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("ProductImages");
 
                     b.Navigation("ProductInCategories");
 
