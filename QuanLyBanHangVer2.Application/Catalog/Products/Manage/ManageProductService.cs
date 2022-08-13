@@ -4,6 +4,7 @@ using QuanLyBanHangVer2.Application.Catalog.Products.Manage;
 using QuanLyBanHangVer2.Application.Common;
 using QuanLyBanHangVer2.Data.EF;
 using QuanLyBanHangVer2.Data.Entities.Concrete;
+using QuanLyBanHangVer2.ViewModel.Catalog.ProductImages;
 using QuanLyBanHangVer2.ViewModel.Catalog.Products;
 using QuanLyBanHangVer2.ViewModel.Common;
 using System;
@@ -24,22 +25,22 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             _storageService = storageService;
         }
 
-        public async Task<int> AddImages(int productId, List<IFormFile> files)
+        public async Task<int> AddImages(int productId, ProductImageCreateRequest request)
         {
-            var product =await _context.Products.FindAsync(productId);
-            if(files != null)
+            var productImage = new ProductImage()
             {
-                foreach(var file in files)
-                {
-
-                var image = new ProductImage()
-                {
-
-                }
-                }
+                Caption = request.Caption,
+                IsDefault = request.IsDefault,
+                ProductId = productId,
+            };
+            if (request.ImageFile != null)
+            {
+                productImage.ImagePath = await SaveFile(request.ImageFile);
             }
+            _context.ProductImages.Add(productImage);
+            await _context.SaveChangesAsync();
+            return productImage.Id;
         }
-
         public async Task AddViewCount(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
@@ -47,7 +48,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Create(ProductCreateRequest request)
+        public async Task<int> AddProduct(ProductCreateRequest request)
         {
             var product = new Product()
             {
@@ -87,7 +88,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Delete(int productId)
+        public async Task<int> DeleteProduct(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
 
@@ -99,15 +100,18 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
                 }
                 _context.Products.Remove(product);
             }
+
             return await _context.SaveChangesAsync();
         }
 
-        public Task<bool> DeleteImage(int imageId)
+        public async Task<int> DeleteImage(int imageId)
         {
-            throw new NotImplementedException();
+           var productImage =  _context.ProductImages.Find(imageId);
+            _context.ProductImages.Remove(productImage);
+           return await _context.SaveChangesAsync();
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(ProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(ManageProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
@@ -118,9 +122,9 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             {
                 query = query.Where(x => x.pt.Name.ToLower().Contains(request.Keyword.ToLower()));
             }
-            if (request.CategoryIds.Count() > 0)
+            if (request.CategoryId != null && request.CategoryId!=0)
             {
-                query = query.Where(q => request.CategoryIds.Contains(q.pic.CategoryId));
+                query = query.Where(q => request.CategoryId ==q.pic.CategoryId);
             }
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize)
                 .Select(x => new ProductViewModel()
@@ -147,7 +151,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             return pageResult;
         }
 
-        public async Task<int> Update(ProductUpdateRequest request)
+        public async Task<int> UpdateProduct(ProductUpdateRequest request)
         {
             var product = await _context.Products.FindAsync(request.Id);
             var productTranslations = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id
@@ -203,5 +207,6 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
+
     }
 }

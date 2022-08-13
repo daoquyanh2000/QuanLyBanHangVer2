@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyBanHangVer2.Data", "Q
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyBanHangVer2.Application", "QuanLyBanHangVer2.Application\QuanLyBanHangVer2.Application.csproj", "{A8839003-214A-4889-A7A1-70C9EB71A2D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyBanHangVer2.Utilities", "QuanLyBanHangVer2.Utilities\QuanLyBanHangVer2.Utilities.csproj", "{1DAAC188-8453-49BB-BB86-66214AF38FCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyBanHangVer2.Utilities", "QuanLyBanHangVer2.Utilities\QuanLyBanHangVer2.Utilities.csproj", "{1DAAC188-8453-49BB-BB86-66214AF38FCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyBanHangVer2.ViewModel", "QuanLyBanHangVer2.ViewModel\QuanLyBanHangVer2.ViewModel.csproj", "{98335E36-9471-4A99-A192-161A1F574372}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyBanHangVer2.ViewModel", "QuanLyBanHangVer2.ViewModel\QuanLyBanHangVer2.ViewModel.csproj", "{98335E36-9471-4A99-A192-161A1F574372}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyBanHangVer2.BackendApi", "QuanLyBanHangVer2.BackendApi\QuanLyBanHangVer2.BackendApi.csproj", "{6081E097-C133-4496-9B32-765137FC3850}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{98335E36-9471-4A99-A192-161A1F574372}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98335E36-9471-4A99-A192-161A1F574372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98335E36-9471-4A99-A192-161A1F574372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6081E097-C133-4496-9B32-765137FC3850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6081E097-C133-4496-9B32-765137FC3850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6081E097-C133-4496-9B32-765137FC3850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6081E097-C133-4496-9B32-765137FC3850}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
