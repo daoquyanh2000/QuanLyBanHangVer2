@@ -1,4 +1,6 @@
-﻿namespace QuanLyBanHangVer2.ViewModel.Catalog.Products
+﻿using Microsoft.AspNetCore.Http;
+
+namespace QuanLyBanHangVer2.ViewModel.Catalog.Products
 {
     public class ProductUpdateRequest
     {
@@ -11,5 +13,7 @@
 
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
+        public IFormFile ThumbnailImage { set; get; }
+
     }
 }
