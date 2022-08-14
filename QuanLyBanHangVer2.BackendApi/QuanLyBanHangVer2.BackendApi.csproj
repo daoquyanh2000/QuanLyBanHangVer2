@@ -4,4 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QuanLyBanHangVer2.Application\QuanLyBanHangVer2.Application.csproj" />
+    <ProjectReference Include="..\QuanLyBanHangVer2.Data\QuanLyBanHangVer2.Data.csproj" />
+    <ProjectReference Include="..\QuanLyBanHangVer2.Utilities\QuanLyBanHangVer2.Utilities.csproj" />
+    <ProjectReference Include="..\QuanLyBanHangVer2.ViewModel\QuanLyBanHangVer2.ViewModel.csproj" />
+  </ItemGroup>
+
 </Project>

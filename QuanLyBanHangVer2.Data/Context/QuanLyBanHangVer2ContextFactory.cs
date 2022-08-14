@@ -3,6 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using QuanLyBanHangVer2.Utilities.Constants;
 using System.IO;
 
 namespace QuanLyBanHangVer2.Data.EF
@@ -16,7 +17,7 @@ namespace QuanLyBanHangVer2.Data.EF
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            string ConnectionString = configuration.GetConnectionString("QuanLyBanHangVer2Db");
+            string ConnectionString = configuration.GetConnectionString(SystemConstants.MainConnectionString);
 
             var optionsBuilder = new DbContextOptionsBuilder<QuanLyBanHangVer2Context>();
             optionsBuilder.UseSqlServer(ConnectionString);

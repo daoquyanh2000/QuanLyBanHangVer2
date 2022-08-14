@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32630.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyBanHangVer2.WebApp", "QuanLyBanHangVer2.WebApp\QuanLyBanHangVer2.WebApp.csproj", "{1C7821E7-6779-4516-A8AD-86FA15DD4ABF}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyBanHangVer2.Utilities
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyBanHangVer2.ViewModel", "QuanLyBanHangVer2.ViewModel\QuanLyBanHangVer2.ViewModel.csproj", "{98335E36-9471-4A99-A192-161A1F574372}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyBanHangVer2.BackendApi", "QuanLyBanHangVer2.BackendApi\QuanLyBanHangVer2.BackendApi.csproj", "{6081E097-C133-4496-9B32-765137FC3850}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLyBanHangVer2.BackendApi", "QuanLyBanHangVer2.BackendApi\QuanLyBanHangVer2.BackendApi.csproj", "{6081E097-C133-4496-9B32-765137FC3850}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

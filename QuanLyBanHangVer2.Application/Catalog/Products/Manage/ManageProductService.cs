@@ -94,7 +94,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
 
             if (product != null)
             {
-                foreach(var item in product.ProductImages)
+                foreach (var item in product.ProductImages)
                 {
                     await _storageService.DeleteFileAsync(item.ImagePath);
                 }
@@ -106,9 +106,9 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
 
         public async Task<int> DeleteImage(int imageId)
         {
-           var productImage =  _context.ProductImages.Find(imageId);
+            var productImage = _context.ProductImages.Find(imageId);
             _context.ProductImages.Remove(productImage);
-           return await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<PagedResult<ProductViewModel>> GetAllPaging(ManageProductPagingRequest request)
@@ -122,9 +122,9 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             {
                 query = query.Where(x => x.pt.Name.ToLower().Contains(request.Keyword.ToLower()));
             }
-            if (request.CategoryId != null && request.CategoryId!=0)
+            if (request.CategoryId != null && request.CategoryId != 0)
             {
-                query = query.Where(q => request.CategoryId ==q.pic.CategoryId);
+                query = query.Where(q => request.CategoryId == q.pic.CategoryId);
             }
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize)
                 .Select(x => new ProductViewModel()
@@ -167,7 +167,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             //update file 
             if (request.ThumbnailImage != null)
             {
-                var thumbnailImage =await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.ProductId == request.Id);
+                var thumbnailImage = await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.ProductId == request.Id);
                 if (thumbnailImage != null)
                 {
                     thumbnailImage.ImagePath = await SaveFile(request.ThumbnailImage);
@@ -207,6 +207,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
+
 
     }
 }

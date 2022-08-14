@@ -22,7 +22,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Products.Manage
         Task<int> UpdateImage(int imageId, bool IsDefault,string caption);
 
         Task<int> DeleteImage(int imageId);
-        
 
+    
     }
 }

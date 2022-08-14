@@ -24,4 +24,8 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QuanLyBanHangVer2.Utilities\QuanLyBanHangVer2.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>
