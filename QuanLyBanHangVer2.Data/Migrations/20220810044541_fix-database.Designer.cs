@@ -10,13 +10,8 @@ using QuanLyBanHangVer2.Data.EF;
 namespace QuanLyBanHangVer2.Data.Migrations
 {
     [DbContext(typeof(QuanLyBanHangVer2Context))]
-<<<<<<<< HEAD:QuanLyBanHangVer2.Data/Migrations/20220812011223_recreateDatabase.Designer.cs
-    [Migration("20220812011223_recreateDatabase")]
-    partial class recreateDatabase
-========
-    [Migration("20220810044023_data-seeding")]
-    partial class dataseeding
->>>>>>>> develop:QuanLyBanHangVer2.Data/Migrations/20220810044023_data-seeding.Designer.cs
+    [Migration("20220810044541_fix-database")]
+    partial class fixdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,7 +164,9 @@ namespace QuanLyBanHangVer2.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -185,7 +182,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "648c10ec-3e88-4af2-8919-05895387b235",
+                            ConcurrencyStamp = "50cc1a7d-8ee7-4d93-8972-5332f96e0d59",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -262,7 +259,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d2c94e56-83e1-4fde-8749-ac5bec5ca60b",
+                            ConcurrencyStamp = "6572b8a6-b9a3-49f0-aa69-46b9217596dc",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -271,7 +268,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGBNYxLB9R48UcDOVZ2na2vlCfXsKRnqamUST096lLcyUCMxsCWglWbVqRF7u53ZmQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEKot0oPTopIza/D8c4hA9JBZtOowFuvSYHatJcm/Yi7sA6lv2i3vuJY0wybDX0QRQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -517,11 +514,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-<<<<<<<< HEAD:QuanLyBanHangVer2.Data/Migrations/20220812011223_recreateDatabase.Designer.cs
-                        .HasDefaultValue(new DateTime(2022, 8, 12, 8, 12, 22, 504, DateTimeKind.Local).AddTicks(3740));
-========
-                        .HasDefaultValue(new DateTime(2022, 8, 10, 11, 40, 22, 652, DateTimeKind.Local).AddTicks(3333));
->>>>>>>> develop:QuanLyBanHangVer2.Data/Migrations/20220810044023_data-seeding.Designer.cs
+                        .HasDefaultValue(new DateTime(2022, 8, 10, 11, 45, 40, 708, DateTimeKind.Local).AddTicks(2254));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -598,6 +591,9 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("SeoAlias")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -625,34 +621,6 @@ namespace QuanLyBanHangVer2.Data.Migrations
                             Stock = 0,
                             ViewCount = 0
                         });
-                });
-
-            modelBuilder.Entity("QuanLyBanHangVer2.Data.Entities.Concrete.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Caption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("QuanLyBanHangVer2.Data.Entities.Concrete.ProductInCategory", b =>
@@ -895,17 +863,6 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("QuanLyBanHangVer2.Data.Entities.Concrete.ProductImage", b =>
-                {
-                    b.HasOne("QuanLyBanHangVer2.Data.Entities.Concrete.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("QuanLyBanHangVer2.Data.Entities.Concrete.ProductInCategory", b =>
                 {
                     b.HasOne("QuanLyBanHangVer2.Data.Entities.Concrete.Category", "Category")
@@ -984,8 +941,6 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Navigation("Carts");
 
                     b.Navigation("OrderDetails");
-
-                    b.Navigation("ProductImages");
 
                     b.Navigation("ProductInCategories");
 

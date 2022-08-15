@@ -18,5 +18,7 @@ namespace QuanLyBanHangVer2.Data.Entities.Concrete
         public OrderStatus Status { set; get; }
 
         public List<OrderDetail> OrderDetails { get; set; }
+
+        public AppUser AppUser { get; set; }
     }
 }
