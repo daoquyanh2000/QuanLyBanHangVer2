@@ -10,13 +10,8 @@ using QuanLyBanHangVer2.Data.EF;
 namespace QuanLyBanHangVer2.Data.Migrations
 {
     [DbContext(typeof(QuanLyBanHangVer2Context))]
-<<<<<<<< HEAD:QuanLyBanHangVer2.Data/Migrations/20220812011223_recreateDatabase.Designer.cs
-    [Migration("20220812011223_recreateDatabase")]
-    partial class recreateDatabase
-========
-    [Migration("20220810044023_data-seeding")]
-    partial class dataseeding
->>>>>>>> develop:QuanLyBanHangVer2.Data/Migrations/20220810044023_data-seeding.Designer.cs
+    [Migration("20220815021553_createDatabase")]
+    partial class createDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,7 +164,9 @@ namespace QuanLyBanHangVer2.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -185,7 +182,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "648c10ec-3e88-4af2-8919-05895387b235",
+                            ConcurrencyStamp = "825312b6-04ba-4f62-b262-9402834e9f12",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -262,7 +259,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d2c94e56-83e1-4fde-8749-ac5bec5ca60b",
+                            ConcurrencyStamp = "c7919fc5-c0ef-4a14-9f0d-fe51f176b2f7",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -271,7 +268,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGBNYxLB9R48UcDOVZ2na2vlCfXsKRnqamUST096lLcyUCMxsCWglWbVqRF7u53ZmQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDZB3kEgZQ0EcQ75mjbEau5Jb2y9DdxKHROx8NAEOTRM7fu/xSSQIimKhCcAIHYCqA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -517,11 +514,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-<<<<<<<< HEAD:QuanLyBanHangVer2.Data/Migrations/20220812011223_recreateDatabase.Designer.cs
-                        .HasDefaultValue(new DateTime(2022, 8, 12, 8, 12, 22, 504, DateTimeKind.Local).AddTicks(3740));
-========
-                        .HasDefaultValue(new DateTime(2022, 8, 10, 11, 40, 22, 652, DateTimeKind.Local).AddTicks(3333));
->>>>>>>> develop:QuanLyBanHangVer2.Data/Migrations/20220810044023_data-seeding.Designer.cs
+                        .HasDefaultValue(new DateTime(2022, 8, 15, 9, 15, 52, 250, DateTimeKind.Local).AddTicks(412));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()

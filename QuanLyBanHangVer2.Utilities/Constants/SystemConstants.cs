@@ -8,6 +8,6 @@ namespace QuanLyBanHangVer2.Utilities.Constants
 {
     public class SystemConstants
     {
-        public const string MainConnectionString = "QuanLyBanHangVer2Pc";
+        public const string MainConnectionString = "QuanLyBanHangVer2Laptop";
     }
 }
