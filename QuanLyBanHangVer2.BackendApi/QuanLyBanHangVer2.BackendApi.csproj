@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\QuanLyBanHangVer2.Application\QuanLyBanHangVer2.Application.csproj" />
     <ProjectReference Include="..\QuanLyBanHangVer2.Data\QuanLyBanHangVer2.Data.csproj" />
     <ProjectReference Include="..\QuanLyBanHangVer2.Utilities\QuanLyBanHangVer2.Utilities.csproj" />
