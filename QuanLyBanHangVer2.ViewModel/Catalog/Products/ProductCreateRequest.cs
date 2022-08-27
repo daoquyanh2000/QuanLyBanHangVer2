@@ -17,6 +17,5 @@ namespace QuanLyBanHangVer2.ViewModel.Catalog.Products
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
         public IFormFile ThumbnailImage { set; get; }
-        public List<ProductTranslation> ProductTranslations { get; set; }
     }
 }

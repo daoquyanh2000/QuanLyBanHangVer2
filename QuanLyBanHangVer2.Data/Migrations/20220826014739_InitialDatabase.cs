@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuanLyBanHangVer2.Data.Migrations
 {
-    public partial class createDatabase : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -226,7 +226,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2022, 8, 15, 9, 15, 52, 250, DateTimeKind.Local).AddTicks(412)),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2022, 8, 26, 8, 47, 38, 572, DateTimeKind.Local).AddTicks(5539)),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ShipName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     ShipAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -451,7 +451,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"), "825312b6-04ba-4f62-b262-9402834e9f12", "Administrator role", "admin", "admin" });
+                values: new object[] { new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"), "14fe6675-cb17-4d56-b938-670740e697cb", "Administrator role", "admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AppUserRoles",
@@ -461,7 +461,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "c7919fc5-c0ef-4a14-9f0d-fe51f176b2f7", new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "tedu.international@gmail.com", true, "Toan", "Bach", false, null, "tedu.international@gmail.com", "admin", "AQAAAAEAACcQAAAAEDZB3kEgZQ0EcQ75mjbEau5Jb2y9DdxKHROx8NAEOTRM7fu/xSSQIimKhCcAIHYCqA==", null, false, "", false, "admin" });
+                values: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "5fad4e8c-0f8a-40fa-b86e-40c51fa7df41", new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "tedu.international@gmail.com", true, "Toan", "Bach", false, null, "tedu.international@gmail.com", "admin", "AQAAAAEAACcQAAAAED5PYx2Ei/L04KPjwhgyNRgbBNj+Us+qfVYiaxc79EqOUwAR6E6NblFs4TEopl/0fA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",

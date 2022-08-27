@@ -6,5 +6,6 @@ namespace QuanLyBanHangVer2.ViewModel.Catalog.Products
     public class PublicProductPagingRequest : PagingRequestBase
     {
         public int? CategoryId { get; set; }
+        public string languagueId { get; set; }
     }
 }

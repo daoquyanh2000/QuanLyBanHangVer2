@@ -11,7 +11,7 @@ namespace QuanLyBanHangVer2.Application.Common
     public class StorageService : IStorageService
     {
         private readonly string _userContentFolder;
-        private const string USER_CONTENT_FOLDER_NAME = "user-content";
+        private const string USER_CONTENT_FOLDER_NAME = "user-content/product-image";
 
         public StorageService(IWebHostEnvironment webHostEnvironment)
         {

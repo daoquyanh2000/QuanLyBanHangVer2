@@ -7,7 +7,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Products.Public
 {
     public interface IPulbicProductService
     {
-        PagedResult<ProductViewModel> GetAllPaging(int categoryId, int pageIndex, int pageSize);
+        Task<PagedResult<ProductViewModel>> GetAllPagingPublicAsync(PublicProductPagingRequest request);
         Task<List<ProductViewModel>> GetAll();
 
     }

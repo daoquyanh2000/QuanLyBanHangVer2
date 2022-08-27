@@ -13,34 +13,20 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+
 namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
 {
     public class ManageProductService : IManageProductService
     {
         private readonly QuanLyBanHangVer2Context _context;
         private readonly IStorageService _storageService;
+
         public ManageProductService(QuanLyBanHangVer2Context context, IStorageService storageService)
         {
             _context = context;
             _storageService = storageService;
         }
 
-        public async Task<int> AddImages(int productId, ProductImageCreateRequest request)
-        {
-            var productImage = new ProductImage()
-            {
-                Caption = request.Caption,
-                IsDefault = request.IsDefault,
-                ProductId = productId,
-            };
-            if (request.ImageFile != null)
-            {
-                productImage.ImagePath = await SaveFile(request.ImageFile);
-            }
-            _context.ProductImages.Add(productImage);
-            await _context.SaveChangesAsync();
-            return productImage.Id;
-        }
         public async Task AddViewCount(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
@@ -48,7 +34,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             await _context.SaveChangesAsync();
         }
 
-        public async Task<int> AddProduct(ProductCreateRequest request)
+        public async Task<int> CreateProduct(ProductCreateRequest request)
         {
             var product = new Product()
             {
@@ -69,7 +55,6 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
                         LanguageId =request.LanguageId,
                     }
                 }
-
             };
             //save image
             if (request.ThumbnailImage != null)
@@ -101,13 +86,6 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
                 _context.Products.Remove(product);
             }
 
-            return await _context.SaveChangesAsync();
-        }
-
-        public async Task<int> DeleteImage(int imageId)
-        {
-            var productImage = _context.ProductImages.Find(imageId);
-            _context.ProductImages.Remove(productImage);
             return await _context.SaveChangesAsync();
         }
 
@@ -164,7 +142,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             productTranslations.SeoTitle = request.SeoTitle;
             productTranslations.Description = request.Description;
             productTranslations.Details = request.Details;
-            //update file 
+            //update file
             if (request.ThumbnailImage != null)
             {
                 var thumbnailImage = await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.ProductId == request.Id);
@@ -173,14 +151,8 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
                     thumbnailImage.ImagePath = await SaveFile(request.ThumbnailImage);
                     _context.ProductImages.Update(thumbnailImage);
                 }
-
             }
             return await _context.SaveChangesAsync();
-        }
-
-        public Task<int> UpdateImage(int imageId, bool IsDefault, string caption)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdatePrice(int productId, decimal newPrice)
@@ -200,6 +172,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             product.Stock = newStock;
             return await _context.SaveChangesAsync() > 0;
         }
+
         private async Task<string> SaveFile(IFormFile file)
         {
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
@@ -208,6 +181,68 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             return fileName;
         }
 
+        public async Task<ProductViewModel> GetProductById(int productId, string languageId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId
+            && x.LanguageId == languageId);
 
+            var categories = await (from c in _context.Categories
+                                    join ct in _context.CategoryTranslations on c.Id equals ct.CategoryId
+                                    join pic in _context.productInCategories on c.Id equals pic.CategoryId
+                                    where pic.ProductId == productId && ct.LanguageId == languageId
+                                    select ct.Name).ToListAsync();
+
+            var image = await _context.ProductImages.Where(x => x.ProductId == productId && x.IsDefault == true).FirstOrDefaultAsync();
+
+            var productViewModel = new ProductViewModel
+            {
+                Id = product.Id,
+                DateCreated = product.CreateDate,
+                Description = productTranslation != null ? productTranslation.Description : null,
+                LanguageId = productTranslation.LanguageId,
+                Details = productTranslation != null ? productTranslation.Details : null,
+                Name = productTranslation != null ? productTranslation.Name : null,
+                OriginalPrice = product.OriginalPrice,
+                Price = product.Price,
+                SeoAlias = productTranslation != null ? productTranslation.SeoAlias : null,
+                SeoDescription = productTranslation != null ? productTranslation.SeoDescription : null,
+                SeoTitle = productTranslation != null ? productTranslation.SeoTitle : null,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount,
+            };
+            return productViewModel;
+        }
+
+        public async Task<int> AddImages(int productId, List<IFormFile> files)
+        {
+            if (files.Count > 0)
+            {
+                foreach (var file in files)
+                {
+                    var productImage = new ProductImage()
+                    {
+                        ProductId = productId,
+                    };
+                    if (file != null)
+                    {
+                        productImage.ImagePath = await SaveFile(file);
+                    }
+                    _context.ProductImages.Add(productImage);
+                }
+            }
+            else
+            {
+                return 0;
+            }
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> DeleteImage(int imageId)
+        {
+            var productImage = _context.ProductImages.Find(imageId);
+            _context.ProductImages.Remove(productImage);
+            return await _context.SaveChangesAsync();
+        }
     }
 }

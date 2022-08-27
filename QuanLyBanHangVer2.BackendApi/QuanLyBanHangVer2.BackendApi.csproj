@@ -15,4 +15,8 @@
     <ProjectReference Include="..\QuanLyBanHangVer2.ViewModel\QuanLyBanHangVer2.ViewModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\user-content\product-image\" />
+  </ItemGroup>
+
 </Project>

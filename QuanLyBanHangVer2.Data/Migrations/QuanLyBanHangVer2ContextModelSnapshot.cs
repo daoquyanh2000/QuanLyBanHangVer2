@@ -180,7 +180,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "825312b6-04ba-4f62-b262-9402834e9f12",
+                            ConcurrencyStamp = "14fe6675-cb17-4d56-b938-670740e697cb",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -257,7 +257,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7919fc5-c0ef-4a14-9f0d-fe51f176b2f7",
+                            ConcurrencyStamp = "5fad4e8c-0f8a-40fa-b86e-40c51fa7df41",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +266,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDZB3kEgZQ0EcQ75mjbEau5Jb2y9DdxKHROx8NAEOTRM7fu/xSSQIimKhCcAIHYCqA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED5PYx2Ei/L04KPjwhgyNRgbBNj+Us+qfVYiaxc79EqOUwAR6E6NblFs4TEopl/0fA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -512,7 +512,7 @@ namespace QuanLyBanHangVer2.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 8, 15, 9, 15, 52, 250, DateTimeKind.Local).AddTicks(412));
+                        .HasDefaultValue(new DateTime(2022, 8, 26, 8, 47, 38, 572, DateTimeKind.Local).AddTicks(5539));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()

@@ -9,7 +9,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Products.Manage
 {
     public interface IManageProductService
     {
-        Task<int> AddProduct(ProductCreateRequest request);
+        Task<int> CreateProduct(ProductCreateRequest request);
         Task<int> UpdateProduct(ProductUpdateRequest request);
         Task<int> DeleteProduct(int productId);
         Task<bool> UpdatePrice(int productId, decimal newPrice);
@@ -17,12 +17,10 @@ namespace QuanLyBanHangVer2.Application.Catalog.Products.Manage
 
         Task AddViewCount(int productId);
         Task<PagedResult<ProductViewModel>> GetAllPaging(ManageProductPagingRequest request);
-        Task<int> AddImages(int productId, ProductImageCreateRequest request);
-
-        Task<int> UpdateImage(int imageId, bool IsDefault,string caption);
-
+        Task<int> AddImages(int productId,List<IFormFile> files);
         Task<int> DeleteImage(int imageId);
 
+        Task<ProductViewModel> GetProductById(int productId,string languageId);
     
     }
 }
