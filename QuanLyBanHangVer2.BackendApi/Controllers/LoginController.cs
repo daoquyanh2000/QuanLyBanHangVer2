@@ -32,7 +32,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             else
             {
                 var resultTokens = await _usersService.Authenticate(request);
-                return Ok(new {tokens=resultTokens });
+                return Ok(new { tokens = resultTokens });
             }
         }
 

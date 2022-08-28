@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +19,7 @@ using QuanLyBanHangVer2.Application.System.Users;
 using QuanLyBanHangVer2.Data.EF;
 using QuanLyBanHangVer2.Data.Entities.Concrete;
 using QuanLyBanHangVer2.Utilities.Constants;
+using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +56,10 @@ namespace QuanLyBanHangVer2.BackendApi
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<IUsersService, UserService>();
 
-            services.AddControllersWithViews();
+            services.AddControllers();
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<LoginRequestValidatior>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger eShop Solution", Version = "v1" });
