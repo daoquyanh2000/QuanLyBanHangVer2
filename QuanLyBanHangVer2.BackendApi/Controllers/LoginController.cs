@@ -12,6 +12,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class LoginController : ControllerBase
     {
         private readonly IUsersService _usersService;
@@ -21,7 +22,6 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             _usersService = usersService;
         }
 
-        [AllowAnonymous]
         [HttpPost("Authenticate")]
         public async Task<IActionResult> Login([FromForm] LoginRequest request)
         {
@@ -32,11 +32,10 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             else
             {
                 var resultTokens = await _usersService.Authenticate(request);
-                return Ok(resultTokens);
+                return Ok(new {tokens=resultTokens });
             }
         }
 
-        [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromForm] RegisterRequest request)
         {
