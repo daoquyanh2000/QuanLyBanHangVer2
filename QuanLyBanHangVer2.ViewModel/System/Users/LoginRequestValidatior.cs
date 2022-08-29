@@ -13,10 +13,10 @@ namespace QuanLyBanHangVer2.ViewModel.System.Users
         {
             RuleFor(x => x.UserName)
                 .NotEmpty().WithMessage("User Name is required")
-                .MinimumLength(6).WithMessage("User Name at least 6 characters");
+                .Length(3,20).WithMessage("User Name must between 3 and 20 characters");
             RuleFor(x => x.Password)
-                .NotEmpty().WithMessage("User Name is required")
-                .MinimumLength(6).WithMessage("User Name at least 6 characters");
+                .NotEmpty().WithMessage("Password is required")
+                .Length(3, 20).WithMessage("User Name at least 6 characters");
         }
     }
 }

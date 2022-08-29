@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:5138",
-      "sslPort": 44306
+      "applicationUrl": "http://localhost:6061",
+      "sslPort": 44307
     }
   },
   "profiles": {
@@ -15,12 +15,11 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "QuanLyBanHangVer2.BackendApi": {
+    "QuanLyBanHangVer2.WebAdmin": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
-      "launchUrl": "Swagger",
-      "applicationUrl": "https://localhost:5000",
+      "applicationUrl": "https://localhost:5001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

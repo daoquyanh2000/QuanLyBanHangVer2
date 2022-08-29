@@ -23,7 +23,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
         }
 
         [HttpPost("Authenticate")]
-        public async Task<IActionResult> Login([FromForm] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -37,7 +37,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromForm] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
             {
