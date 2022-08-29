@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +16,7 @@ using QuanLyBanHangVer2.Application.System.Users;
 using QuanLyBanHangVer2.Data.EF;
 using QuanLyBanHangVer2.Data.Entities.Concrete;
 using QuanLyBanHangVer2.Utilities.Constants;
+using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +53,10 @@ namespace QuanLyBanHangVer2.BackendApi
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<IUsersService, UserService>();
 
-            services.AddControllersWithViews();
+            services.AddControllers();
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<LoginRequestValidatior>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger eShop Solution", Version = "v1" });
@@ -87,7 +90,6 @@ namespace QuanLyBanHangVer2.BackendApi
                       }
                     });
             });
-
             string issuer = Configuration.GetValue<string>("Tokens:Issuer");
             string signingKey = Configuration.GetValue<string>("Tokens:Key");
             byte[] signingKeyBytes = System.Text.Encoding.UTF8.GetBytes(signingKey);
@@ -131,12 +133,13 @@ namespace QuanLyBanHangVer2.BackendApi
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V2");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
             app.UseEndpoints(endpoints =>
             {
