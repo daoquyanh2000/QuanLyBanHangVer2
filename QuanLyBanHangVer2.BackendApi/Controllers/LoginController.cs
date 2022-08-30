@@ -21,37 +21,5 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
         {
             _usersService = usersService;
         }
-
-        [HttpPost("Authenticate")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            else
-            {
-                var resultTokens = await _usersService.Authenticate(request);
-                return Ok(new { tokens = resultTokens });
-            }
-        }
-
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            else
-            {
-                var result = await _usersService.Register(request);
-                if (!result.Succeeded)
-                {
-                    return BadRequest(result);
-                }
-                return Ok(result);
-            }
-        }
     }
 }

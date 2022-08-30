@@ -1,5 +1,6 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,12 @@ namespace QuanLyBanHangVer2.WebAdmin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/User/Login/";
+                options.AccessDeniedPath = "/User/Forbidden/";
+            });
 
             var builder = services.AddControllersWithViews();
             if (Env.IsDevelopment())
@@ -60,7 +67,7 @@ namespace QuanLyBanHangVer2.WebAdmin
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

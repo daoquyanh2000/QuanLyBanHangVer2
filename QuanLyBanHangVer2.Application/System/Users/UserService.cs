@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using QuanLyBanHangVer2.Data.Entities.Concrete;
+using QuanLyBanHangVer2.ViewModel.Common;
 using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +49,7 @@ namespace QuanLyBanHangVer2.Application.System.Users
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.Email,user.Email ),
-                    new Claim(ClaimTypes.GivenName,user.FirstName ),
+                    new Claim(ClaimTypes.Name,user.FirstName ),
                     new Claim(ClaimTypes.Role,string.Join(";",roles) ),
                 };
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
@@ -62,7 +65,7 @@ namespace QuanLyBanHangVer2.Application.System.Users
             }
         }
 
-        public async Task<IdentityResult> Register(RegisterRequest request)
+        public async Task<IdentityResult> Create(CreateRequest request)
         {
             var user = new AppUser()
             {
@@ -75,6 +78,38 @@ namespace QuanLyBanHangVer2.Application.System.Users
             };
             var result = await _userManager.CreateAsync(user, request.Password);
             return result;
+        }
+
+        public async Task<PagedResult<UserVm>> GetUserPaging(GetUserPagingRequest request)
+        {
+            var query = _userManager.Users;
+            var keyword = request.keyword;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query.Where(x => x.FirstName.Contains(keyword) ||
+                x.LastName.Contains(keyword) ||
+                x.Email.Contains(keyword) ||
+                x.UserName.Contains(keyword) ||
+                x.Dob.ToString().Contains(keyword)
+                );
+            }
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize)
+            .Select(x => new UserVm()
+            {
+                Id = x.Id,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Email = x.Email,
+                UserName = x.UserName,
+                Dob = x.Dob,
+            }).ToListAsync();
+
+            var pagedResult = new PagedResult<UserVm>()
+            {
+                Items = data,
+                TotalRecord = data.Count()
+            };
+            return pagedResult;
         }
     }
 }

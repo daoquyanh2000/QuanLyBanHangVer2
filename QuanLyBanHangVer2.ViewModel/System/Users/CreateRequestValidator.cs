@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHangVer2.ViewModel.System.Users
 {
-    public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
+    public class CreateRequestValidator : AbstractValidator<CreateRequest>
     {
-        public RegisterRequestValidator()
+        public CreateRequestValidator()
         {
             RuleFor(x => x.FirstName)
                 .NotEmpty().Length(1, 20)
@@ -30,9 +30,7 @@ namespace QuanLyBanHangVer2.ViewModel.System.Users
             RuleFor(x => x.Email)
                 .EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible);
             RuleFor(x => x.PhoneNumber)
-                .NotEmpty()
-                .Matches(@"^(\+[0-9]{9})$")
-                .WithMessage("Your phone number is not valid");
+                .NotEmpty();
 
             RuleFor(x => x).Custom((request, context) =>
             {

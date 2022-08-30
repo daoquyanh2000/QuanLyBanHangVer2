@@ -1,8 +1,9 @@
-﻿using System;
+﻿using QuanLyBanHangVer2.ViewModel.Common;
+using System;
 
 namespace QuanLyBanHangVer2.ViewModel.System.Users
 {
-    public class RegisterRequest
+    public class CreateRequest : TokenRequestBase
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
