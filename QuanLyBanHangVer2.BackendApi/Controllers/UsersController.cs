@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuanLyBanHangVer2.Application.System.Users;
 using QuanLyBanHangVer2.ViewModel.System.Users;
@@ -13,6 +14,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUsersService _usersService;
@@ -23,6 +25,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
         }
 
         [HttpPost("Authenticate")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
@@ -32,12 +35,19 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             else
             {
                 var resultTokens = await _usersService.Authenticate(request);
-                return Ok(resultTokens);
+                if (string.IsNullOrEmpty(resultTokens))
+                {
+                    return BadRequest("");
+                }
+                else
+                {
+                    return Ok(resultTokens);
+                }
             }
         }
 
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] CreateRequest request)
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create([FromBody] CreateRequest request)
         {
             if (!ModelState.IsValid)
             {

@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -37,8 +37,14 @@ namespace QuanLyBanHangVer2.WebAdmin
             {
                 options.LoginPath = "/User/Login/";
                 options.AccessDeniedPath = "/User/Forbidden/";
+                options.ExpireTimeSpan = TimeSpan.FromHours(3);
             });
-
+            services.AddDistributedMemoryCache();           // Đăng ký dịch vụ lưu cache trong bộ nhớ (Session sẽ sử dụng nó)
+            services.AddSession(cfg =>
+            {                    // Đăng ký dịch vụ Session
+                cfg.Cookie.Name = "quyanhdao";             // Đặt tên Session - tên này sử dụng ở Browser (Cookie)
+                cfg.IdleTimeout = new TimeSpan(0, 60, 0);    // Thời gian tồn tại của Session
+            });
             var builder = services.AddControllersWithViews();
             if (Env.IsDevelopment())
             {
@@ -65,10 +71,10 @@ namespace QuanLyBanHangVer2.WebAdmin
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

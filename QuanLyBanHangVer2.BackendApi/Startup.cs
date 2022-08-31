@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -136,9 +136,10 @@ namespace QuanLyBanHangVer2.BackendApi
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

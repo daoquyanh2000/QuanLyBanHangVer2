@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
@@ -17,6 +19,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHangVer2.WebAdmin.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IUserApiClient _userApiClient;
@@ -28,34 +31,49 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             _configuration = configuration;
         }
 
-        public IActionResult Index(GetUserPagingRequest request)
+        public async Task<IActionResult> Index(string keyword, int pageSize = 1, int PageIndex = 1)
         {
-            var users = _userApiClient.GetPagingUser(request);
+            var request = new GetUserPagingRequest()
+            {
+                keyword = keyword,
+                PageSize = pageSize,
+                PageIndex = PageIndex,
+                BearerToken = HttpContext.Session.GetString("Token"),
+            };
+            var users = await _userApiClient.GetPagingUser(request);
             return View(users);
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
 
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest request)
         {
             if (!ModelState.IsValid)
             {
-                return View(ModelState);
+                return View(request);
             }
             else
             {
                 var token = await _userApiClient.Authenticate(request);
+                if (string.IsNullOrEmpty(token))
+                {
+                    return View(request);
+                }
+                HttpContext.Session.SetString("Token", token);
                 var userPrincipal = ValidateToken(token);
+                //create cookie authenticate
                 var authProperties = new AuthenticationProperties
                 {
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                    IsPersistent = false
+                    ExpiresUtc = DateTime.Now.AddHours(3),
+                    IsPersistent = request.RememberMe
                 };
                 await HttpContext.SignInAsync(
                         CookieAuthenticationDefaults.AuthenticationScheme,
@@ -65,12 +83,14 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Create(CreateRequest request)
         {
@@ -96,6 +116,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Remove("Token");
             return RedirectToAction("Login", "User");
         }
 

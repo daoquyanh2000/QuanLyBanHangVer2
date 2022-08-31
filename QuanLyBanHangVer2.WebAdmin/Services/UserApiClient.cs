@@ -50,10 +50,8 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5000");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", request.BearerToken);
-            var response = await client.GetAsync(@$"/api/Users/Paging?
-            keyword={request.keyword}&
-            PageIndex ={request.PageIndex}&
-            PageSize = {request.PageSize}");
+            var response = await client.GetAsync($"/api/users/paging?pageIndex=" +
+                $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.keyword}"); 
             var body = await response.Content.ReadAsStringAsync();
             var users = JsonConvert.DeserializeObject<PagedResult<UserVm>>(body);
             return users;
