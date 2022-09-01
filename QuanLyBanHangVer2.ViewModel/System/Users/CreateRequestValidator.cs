@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHangVer2.ViewModel.System.Users
 {
-    public class CreateRequestValidator : AbstractValidator<CreateRequest>
+    public class CreateRequestValidator : AbstractValidator<CreateUserRequest>
     {
         public CreateRequestValidator()
         {

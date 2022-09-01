@@ -13,9 +13,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                Id
-            </th>
+
             <th>
                 Tên
             </th>
@@ -31,7 +29,9 @@
             <th>
                 Ngày sinh
             </th>
-            <th></th>
+            <th>
+                Chức năng
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -40,9 +40,7 @@
             foreach (var item in Model.Items)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
+                        @Html.HiddenFor(modelItem => item.Id)
                     <td>
                         @Html.DisplayFor(modelItem => item.FirstName)
                     </td>

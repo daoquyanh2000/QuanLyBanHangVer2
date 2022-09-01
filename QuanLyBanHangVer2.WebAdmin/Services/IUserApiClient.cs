@@ -13,7 +13,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
     {
         public Task<string> Authenticate(LoginRequest request);
 
-        public Task<bool> Create(CreateRequest request);
+        public Task<bool> Create(CreateUserRequest request);
 
         public Task<PagedResult<UserVm>> GetPagingUser(GetUserPagingRequest request);
     }

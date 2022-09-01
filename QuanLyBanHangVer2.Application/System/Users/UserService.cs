@@ -65,7 +65,7 @@ namespace QuanLyBanHangVer2.Application.System.Users
             }
         }
 
-        public async Task<IdentityResult> Create(CreateRequest request)
+        public async Task<IdentityResult> Create(CreateUserRequest request)
         {
             var user = new AppUser()
             {

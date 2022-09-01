@@ -33,14 +33,13 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             return token;
         }
 
-        public async Task<bool> Create(CreateRequest request)
+        public async Task<bool> Create(CreateUserRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5000");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", request.BearerToken);
-            var response = await client.PostAsync("/api/Users/Authenticate", httpContent);
+            var response = await client.PostAsync("/api/Users/Create", httpContent);
             var result = response.IsSuccessStatusCode;
             return result;
         }
@@ -51,7 +50,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             client.BaseAddress = new Uri("https://localhost:5000");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", request.BearerToken);
             var response = await client.GetAsync($"/api/users/paging?pageIndex=" +
-                $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.keyword}"); 
+                $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.keyword}");
             var body = await response.Content.ReadAsStringAsync();
             var users = JsonConvert.DeserializeObject<PagedResult<UserVm>>(body);
             return users;
