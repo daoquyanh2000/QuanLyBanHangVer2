@@ -54,7 +54,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             else
             {
                 var result = await _usersService.Create(request);
-                if (!result.Succeeded)
+                if (!result)
                 {
                     return BadRequest(result);
                 }

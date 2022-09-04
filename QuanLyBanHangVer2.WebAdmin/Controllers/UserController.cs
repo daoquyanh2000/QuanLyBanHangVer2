@@ -29,7 +29,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             _userApiClient = userApiClient;
         }
 
-        public async Task<IActionResult> Index(string keyword, int pageSize = 1, int PageIndex = 1)
+        public async Task<IActionResult> Index(string keyword, int pageSize = 10, int PageIndex = 1)
         {
             var request = new GetUserPagingRequest()
             {

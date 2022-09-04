@@ -34,7 +34,7 @@ namespace QuanLyBanHangVer2.Application.System.Users
             _config = config;
         }
 
-        public async Task<string> Authenticate(LoginRequest request)
+        public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
             if (user == null) return null;
@@ -60,14 +60,24 @@ namespace QuanLyBanHangVer2.Application.System.Users
                     claims,
                     expires: DateTime.Now.AddHours(3),
                     signingCredentials: creds);
-
-                return new JwtSecurityTokenHandler().WriteToken(token);
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+                return new ApiResult<string>(true, tokenString);
             }
         }
 
-        public async Task<IdentityResult> Create(CreateUserRequest request)
+        public async Task<ApiResult<bool>> Create(CreateUserRequest request)
         {
-            var user = new AppUser()
+            var user = await _userManager.FindByNameAsync(request.UserName);
+
+            if (user != null)
+            {
+                return false;
+            }
+            if (await _userManager.FindByEmailAsync(request.Email) != null)
+            {
+                return false;
+            }
+            user = new AppUser()
             {
                 Dob = request.Dob,
                 Email = request.Email,
@@ -77,7 +87,14 @@ namespace QuanLyBanHangVer2.Application.System.Users
                 PhoneNumber = request.PhoneNumber
             };
             var result = await _userManager.CreateAsync(user, request.Password);
-            return result;
+            if (result.Succeeded)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<PagedResult<UserVm>> GetUserPaging(GetUserPagingRequest request)
