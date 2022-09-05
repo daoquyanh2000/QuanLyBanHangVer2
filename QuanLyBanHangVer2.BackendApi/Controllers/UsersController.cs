@@ -14,7 +14,6 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUsersService _usersService;
@@ -25,7 +24,6 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
         }
 
         [HttpPost("Authenticate")]
-        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
@@ -47,7 +45,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Create([FromBody] CreateRequest request)
+        public async Task<IActionResult> Create([FromBody] CreateUserRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -56,7 +54,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             else
             {
                 var result = await _usersService.Create(request);
-                if (!result.Succeeded)
+                if (!result)
                 {
                     return BadRequest(result);
                 }

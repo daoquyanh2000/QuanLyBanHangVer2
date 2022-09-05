@@ -35,8 +35,8 @@ namespace QuanLyBanHangVer2.WebAdmin
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
-                options.LoginPath = "/User/Login/";
-                options.AccessDeniedPath = "/User/Forbidden/";
+                options.LoginPath = "/login/Index/";
+                options.AccessDeniedPath = "/Home/Forbidden/";
                 options.ExpireTimeSpan = TimeSpan.FromHours(3);
             });
             services.AddDistributedMemoryCache();           // Đăng ký dịch vụ lưu cache trong bộ nhớ (Session sẽ sử dụng nó)

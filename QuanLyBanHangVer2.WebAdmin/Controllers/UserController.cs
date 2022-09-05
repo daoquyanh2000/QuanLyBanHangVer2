@@ -20,18 +20,16 @@ using System.Threading.Tasks;
 namespace QuanLyBanHangVer2.WebAdmin.Controllers
 {
     [Authorize]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IUserApiClient _userApiClient;
-        private readonly IConfiguration _configuration;
 
-        public UserController(IUserApiClient userApiClient, IConfiguration configuration)
+        public UserController(IUserApiClient userApiClient)
         {
             _userApiClient = userApiClient;
-            _configuration = configuration;
         }
 
-        public async Task<IActionResult> Index(string keyword, int pageSize = 1, int PageIndex = 1)
+        public async Task<IActionResult> Index(string keyword, int pageSize = 10, int PageIndex = 1)
         {
             var request = new GetUserPagingRequest()
             {
@@ -45,54 +43,13 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Login()
-
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginRequest request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(request);
-            }
-            else
-            {
-                var token = await _userApiClient.Authenticate(request);
-                if (string.IsNullOrEmpty(token))
-                {
-                    return View(request);
-                }
-                HttpContext.Session.SetString("Token", token);
-                var userPrincipal = ValidateToken(token);
-                //create cookie authenticate
-                var authProperties = new AuthenticationProperties
-                {
-                    ExpiresUtc = DateTime.Now.AddHours(3),
-                    IsPersistent = request.RememberMe
-                };
-                await HttpContext.SignInAsync(
-                        CookieAuthenticationDefaults.AuthenticationScheme,
-                        userPrincipal,
-                        authProperties);
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Create(CreateRequest request)
+        public async Task<IActionResult> Create(CreateUserRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -103,7 +60,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
                 var result = await _userApiClient.Create(request);
                 if (result)
                 {
-                    return RedirectToAction("Login", "User");
+                    return RedirectToAction("Index", "User");
                 }
                 else
                 {
@@ -112,30 +69,31 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Logout()
+        [HttpGet]
+        public IActionResult Edit()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.Session.Remove("Token");
-            return RedirectToAction("Login", "User");
+            return View();
         }
 
-        private ClaimsPrincipal ValidateToken(string jwtToken)
+        [HttpPost]
+        public async Task<IActionResult> Edit(CreateUserRequest request)
         {
-            IdentityModelEventSource.ShowPII = true;
-
-            SecurityToken validatedToken;
-            TokenValidationParameters validationParameters = new TokenValidationParameters();
-
-            validationParameters.ValidateLifetime = true;
-
-            validationParameters.ValidAudience = _configuration["Tokens:Issuer"];
-            validationParameters.ValidIssuer = _configuration["Tokens:Issuer"];
-            validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));
-
-            ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
-
-            return principal;
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+            else
+            {
+                var result = await _userApiClient.Create(request);
+                if (result)
+                {
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    return View(request);
+                }
+            }
         }
     }
 }

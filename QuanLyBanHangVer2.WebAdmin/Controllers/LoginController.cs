@@ -47,6 +47,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             {
                return   View(request);
             }
+
             var userPrincipal = this.ValidateToken(token);
             var authProperties = new AuthenticationProperties
             {
@@ -78,6 +79,14 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
 
             return principal;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Remove("Token");
+            return RedirectToAction("Index", "Login");
         }
     }
 }
