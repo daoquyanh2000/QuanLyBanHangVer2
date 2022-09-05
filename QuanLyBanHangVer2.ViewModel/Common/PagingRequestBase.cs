@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyBanHangVer2.ViewModel.Common
 {
-    public class PagingRequestBase : TokenRequestBase
+    public class PagingRequestBase
     {
         public int PageIndex { get; set; }
 

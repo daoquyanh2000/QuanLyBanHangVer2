@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace QuanLyBanHangVer2.WebAdmin.Controllers
 {
     [Authorize]
-    public class UserController : BaseController
+    public class UserController : Controller
     {
         private readonly IUserApiClient _userApiClient;
 
@@ -36,10 +36,9 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
                 keyword = keyword,
                 PageSize = pageSize,
                 PageIndex = PageIndex,
-                BearerToken = HttpContext.Session.GetString("Token"),
             };
-            var users = await _userApiClient.GetPagingUser(request);
-            return View(users);
+            var data = await _userApiClient.GetPagingUser(request);
+            return View(data.Items);
         }
 
         [HttpGet]
@@ -58,7 +57,8 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             else
             {
                 var result = await _userApiClient.Create(request);
-                if (result)
+                ModelState.AddModelError("", result.Message);
+                if (result.IsSuccessed)
                 {
                     return RedirectToAction("Index", "User");
                 }
@@ -70,13 +70,28 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit()
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            var result = await _userApiClient.GetById(id);
+            if (result.IsSuccessed)
+            {
+                var user = result.Items;
+                var updateRequest = new UserUpdateRequest()
+                {
+                    Dob = user.Dob,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
+                    Id = id
+                };
+                return View(updateRequest);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(CreateUserRequest request)
+        public async Task<IActionResult> Edit(UserUpdateRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -84,8 +99,9 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             }
             else
             {
-                var result = await _userApiClient.Create(request);
-                if (result)
+                var result = await _userApiClient.Edit(request.Id, request);
+                ModelState.AddModelError("", result.Message);
+                if (result.IsSuccessed)
                 {
                     return RedirectToAction("Index", "User");
                 }

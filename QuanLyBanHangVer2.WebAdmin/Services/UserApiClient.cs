@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using QuanLyBanHangVer2.ViewModel.Common;
+using QuanLyBanHangVer2.ViewModel.Common.Api;
 using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
@@ -15,13 +17,15 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
     public class UserApiClient : IUserApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public UserApiClient(IHttpClientFactory httpClientFactory)
+        public UserApiClient(IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor)
         {
             _httpClientFactory = httpClientFactory;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<string> Authenticate(LoginRequest request)
+        public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -30,30 +34,95 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             client.BaseAddress = new Uri("https://localhost:5000");
             var response = await client.PostAsync("/api/Users/Authenticate", httpContent);
             var token = await response.Content.ReadAsStringAsync();
-            return token;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(token);
+            }
+            else
+            {
+                var a = JsonConvert.DeserializeObject<ApiErrorResult<string>>(token);
+                return a;
+            }
         }
 
-        public async Task<bool> Create(CreateUserRequest request)
+        public async Task<ApiResult<string>> Create(CreateUserRequest request)
         {
+            var sessions = httpContextAccessor.HttpContext.Session.GetString("Token");
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5000");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
             var response = await client.PostAsync("/api/Users/Create", httpContent);
-            var result = response.IsSuccessStatusCode;
-            return result;
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(result);
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<ApiErrorResult<string>>(result);
+            }
         }
 
-        public async Task<PagedResult<UserVm>> GetPagingUser(GetUserPagingRequest request)
+        public async Task<ApiResult<UserVm>> GetById(Guid id)
         {
+            var sessions = httpContextAccessor.HttpContext.Session.GetString("Token");
+
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5000");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", request.BearerToken);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.GetAsync($"/api/users/{id}");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiSuccessResult<UserVm>>(body);
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<ApiErrorResult<UserVm>>(body);
+            }
+        }
+
+        public async Task<ApiResult<PagedResult<UserVm>>> GetPagingUser(GetUserPagingRequest request)
+        {
+            var sessions = httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5000");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
             var response = await client.GetAsync($"/api/users/paging?pageIndex=" +
                 $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.keyword}");
             var body = await response.Content.ReadAsStringAsync();
-            var users = JsonConvert.DeserializeObject<PagedResult<UserVm>>(body);
-            return users;
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiSuccessResult<PagedResult<UserVm>>>(body);
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<ApiErrorResult<PagedResult<UserVm>>>(body);
+            }
+        }
+
+        public async Task<ApiResult<string>> Edit(Guid id, UserUpdateRequest request)
+        {
+            var sessions = httpContextAccessor.HttpContext.Session.GetString("Token");
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5000");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.PutAsync($"/api/users/{id}", httpContent);
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(result);
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<ApiErrorResult<string>>(result);
+            }
         }
     }
 }

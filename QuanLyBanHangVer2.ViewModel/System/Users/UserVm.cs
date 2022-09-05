@@ -10,5 +10,6 @@ namespace QuanLyBanHangVer2.ViewModel.System.Users
         public string Email { get; set; }
         public string UserName { get; set; }
         public DateTime Dob { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

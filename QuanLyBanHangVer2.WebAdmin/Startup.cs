@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -51,7 +52,7 @@ namespace QuanLyBanHangVer2.WebAdmin
                 builder.AddRazorRuntimeCompilation();
             }
             services.AddTransient<IUserApiClient, UserApiClient>();
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<LoginRequestValidatior>();
         }

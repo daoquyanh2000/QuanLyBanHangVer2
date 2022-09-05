@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using QuanLyBanHangVer2.Data.Entities.Concrete;
 using QuanLyBanHangVer2.ViewModel.Common;
+using QuanLyBanHangVer2.ViewModel.Common.Api;
 using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,6 @@ namespace QuanLyBanHangVer2.Application.System.Users
             SignInManager<AppUser> signInManager,
             RoleManager<AppRole> roleManager,
             IConfiguration config)
-
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -37,11 +37,12 @@ namespace QuanLyBanHangVer2.Application.System.Users
         public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) return null;
+            if (user == null) return new ApiErrorResult<string>("Wrong UserName, please try again!");
+
             var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
             if (!result.Succeeded)
             {
-                return null;
+                return new ApiErrorResult<string>("Wrong password, please try again!");
             }
             else
             {
@@ -61,7 +62,7 @@ namespace QuanLyBanHangVer2.Application.System.Users
                     expires: DateTime.Now.AddHours(3),
                     signingCredentials: creds);
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-                return new ApiResult<string>(true, tokenString);
+                return new ApiSuccessResult<string>(tokenString);
             }
         }
 
@@ -71,11 +72,11 @@ namespace QuanLyBanHangVer2.Application.System.Users
 
             if (user != null)
             {
-                return false;
+                return new ApiErrorResult<bool>("UserName already exists");
             }
             if (await _userManager.FindByEmailAsync(request.Email) != null)
             {
-                return false;
+                return new ApiErrorResult<bool>("Email already exists");
             }
             user = new AppUser()
             {
@@ -89,15 +90,34 @@ namespace QuanLyBanHangVer2.Application.System.Users
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)
             {
-                return true;
+                return new ApiSuccessResult<bool>(true);
             }
             else
             {
-                return false;
+                return new ApiErrorResult<bool>("Something when wrongs, please try again!");
             }
         }
 
-        public async Task<PagedResult<UserVm>> GetUserPaging(GetUserPagingRequest request)
+        public async Task<ApiResult<UserVm>> GetById(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<UserVm>("User not found!");
+            }
+            var userVm = new UserVm()
+            {
+                Dob = user.Dob,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber
+            };
+            return new ApiSuccessResult<UserVm>(userVm);
+        }
+
+        public async Task<ApiResult<PagedResult<UserVm>>> GetUserPaging(GetUserPagingRequest request)
         {
             var query = _userManager.Users;
             var keyword = request.keyword;
@@ -126,7 +146,35 @@ namespace QuanLyBanHangVer2.Application.System.Users
                 Items = data,
                 TotalRecord = data.Count()
             };
-            return pagedResult;
+            return new ApiSuccessResult<PagedResult<UserVm>>(pagedResult);
+        }
+
+        public async Task<ApiResult<string>> Update(Guid id, UserUpdateRequest request)
+        {
+            if (await _userManager.Users.AnyAsync(x => x.Email == request.Email))
+            {
+                return new ApiErrorResult<string>("Email already exists");
+            }
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<string>("User not found!");
+            }
+            user.Dob = request.Dob;
+            user.Email = request.Email;
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.PhoneNumber = request.PhoneNumber;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return new ApiSuccessResult<string>("Create successful!");
+            }
+            else
+            {
+                return new ApiErrorResult<string>("Something when wrongs, please try again!");
+            }
         }
     }
 }

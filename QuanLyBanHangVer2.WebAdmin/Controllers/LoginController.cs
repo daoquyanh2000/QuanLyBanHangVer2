@@ -43,18 +43,18 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
                 return View(request);
 
             var token = await _userApiClient.Authenticate(request);
-            if (string.IsNullOrEmpty(token))
+            if (string.IsNullOrEmpty(token.Items))
             {
-               return   View(request);
+                return View(request);
             }
 
-            var userPrincipal = this.ValidateToken(token);
+            var userPrincipal = this.ValidateToken(token.Items);
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                 IsPersistent = request.RememberMe,
             };
-            HttpContext.Session.SetString("Token", token);
+            HttpContext.Session.SetString("Token", token.Items);
             await HttpContext.SignInAsync(
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         userPrincipal,
