@@ -19,6 +19,7 @@ namespace QuanLyBanHangVer2.Application.System.Users
         Task<ApiResult<string>> Update(Guid Id, UserUpdateRequest request);
 
         Task<ApiResult<UserVm>> GetById(Guid Id);
+        Task<ApiResult<bool>> Delete(Guid Id);
 
         Task<ApiResult<PagedResult<UserVm>>> GetUserPaging(GetUserPagingRequest request);
     }

@@ -46,6 +46,20 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var result = await _usersService.GetById(id);
+            if (result.IsSuccessed)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
         [AllowAnonymous]
         [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] CreateUserRequest request)

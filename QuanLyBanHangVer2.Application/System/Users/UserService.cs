@@ -98,6 +98,11 @@ namespace QuanLyBanHangVer2.Application.System.Users
             }
         }
 
+        public Task<ApiResult<bool>> Delete(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ApiResult<UserVm>> GetById(Guid id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
@@ -115,6 +120,60 @@ namespace QuanLyBanHangVer2.Application.System.Users
                 PhoneNumber = user.PhoneNumber
             };
             return new ApiSuccessResult<UserVm>(userVm);
+            public async Task<ApiResult<UserVm>> GetById(Guid id)
+            {
+                var user = await _userManager.FindByIdAsync(id.ToString());
+                if (user == null)
+                {
+                    return new ApiErrorResult<UserVm>("User not found!");
+                }
+                var userVm = new UserVm()
+                {
+                    Dob = user.Dob,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
+                    PhoneNumber = user.PhoneNumber
+                };
+                return new ApiSuccessResult<UserVm>(userVm);
+            }
+            public async Task<ApiResult<UserVm>> GetById(Guid id)
+            {
+                var user = await _userManager.FindByIdAsync(id.ToString());
+                if (user == null)
+                {
+                    return new ApiErrorResult<UserVm>("User not found!");
+                }
+                var userVm = new UserVm()
+                {
+                    Dob = user.Dob,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
+                    PhoneNumber = user.PhoneNumber
+                };
+                return new ApiSuccessResult<UserVm>(userVm);
+                public async Task<ApiResult<UserVm>> GetById(Guid id)
+                {
+                    var user = await _userManager.FindByIdAsync(id.ToString());
+                    if (user == null)
+                    {
+                        return new ApiErrorResult<UserVm>("User not found!");
+                    }
+                    var userVm = new UserVm()
+                    {
+                        Dob = user.Dob,
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        UserName = user.UserName,
+                        PhoneNumber = user.PhoneNumber
+                    };
+                    return new ApiSuccessResult<UserVm>(userVm);
+                }
+            }
         }
 
         public async Task<ApiResult<PagedResult<UserVm>>> GetUserPaging(GetUserPagingRequest request)
@@ -151,7 +210,7 @@ namespace QuanLyBanHangVer2.Application.System.Users
 
         public async Task<ApiResult<string>> Update(Guid id, UserUpdateRequest request)
         {
-            if (await _userManager.Users.AnyAsync(x => x.Email == request.Email))
+            if (await _userManager.Users.AnyAsync(x => x.Email == request.Email && x.Id != id))
             {
                 return new ApiErrorResult<string>("Email already exists");
             }

@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace QuanLyBanHangVer2.WebAdmin.Controllers
 {
     [Authorize]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IUserApiClient _userApiClient;
 
@@ -100,7 +100,10 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             else
             {
                 var result = await _userApiClient.Edit(request.Id, request);
-                ModelState.AddModelError("", result.Message);
+                if (!string.IsNullOrEmpty(result.Message))
+                {
+                    ModelState.AddModelError("", result.Message);
+                }
                 if (result.IsSuccessed)
                 {
                     return RedirectToAction("Index", "User");
@@ -110,6 +113,28 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
                     return View(request);
                 }
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+            if (result.IsSuccessed)
+            {
+                var user = result.Items;
+                var userVm = new UserVm()
+                {
+                    Dob = user.Dob,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
+                    PhoneNumber = user.PhoneNumber,
+                    Id = id
+                };
+                return View(userVm);
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
