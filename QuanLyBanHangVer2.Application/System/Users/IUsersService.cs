@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using QuanLyBanHangVer2.ViewModel.Common;
 using QuanLyBanHangVer2.ViewModel.Common.Api;
+using QuanLyBanHangVer2.ViewModel.Common.Paging;
+using QuanLyBanHangVer2.ViewModel.Common.Response;
 using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
@@ -12,15 +14,16 @@ namespace QuanLyBanHangVer2.Application.System.Users
 {
     public interface IUsersService
     {
-        Task<ApiResult<string>> Authenticate(LoginRequest request);
+        Task<ResponseBase<string>> Authenticate(LoginRequest request);
 
-        Task<ApiResult<bool>> Create(CreateUserRequest request);
+        Task<ResponseBase<bool>> Create(CreateUserRequest request);
 
-        Task<ApiResult<string>> Update(Guid Id, UserUpdateRequest request);
+        Task<ResponseBase<string>> Update(Guid Id, UserUpdateRequest request);
 
-        Task<ApiResult<UserVm>> GetById(Guid Id);
-        Task<ApiResult<bool>> Delete(Guid Id);
+        Task<ResponseBase<UserVm>> GetById(Guid Id);
 
-        Task<ApiResult<PagedResult<UserVm>>> GetUserPaging(GetUserPagingRequest request);
+        Task<ResponseBase<bool>> Delete(Guid Id);
+
+        Task<PagedResponse<List<UserVm>>> UserPaging(UserPagingRequest request);
     }
 }

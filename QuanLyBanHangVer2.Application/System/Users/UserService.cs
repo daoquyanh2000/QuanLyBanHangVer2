@@ -2,9 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using QuanLyBanHangVer2.Application.Helper;
 using QuanLyBanHangVer2.Data.Entities.Concrete;
-using QuanLyBanHangVer2.ViewModel.Common;
 using QuanLyBanHangVer2.ViewModel.Common.Api;
+using QuanLyBanHangVer2.ViewModel.Common.ApiResult;
+using QuanLyBanHangVer2.ViewModel.Common.Paging;
+using QuanLyBanHangVer2.ViewModel.Common.Response;
 using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
@@ -34,15 +37,15 @@ namespace QuanLyBanHangVer2.Application.System.Users
             _config = config;
         }
 
-        public async Task<ApiResult<string>> Authenticate(LoginRequest request)
+        public async Task<ResponseBase<string>> Authenticate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) return new ApiErrorResult<string>("Wrong UserName, please try again!");
+            if (user == null) return new ErrorResponse<string>("Wrong UserName, please try again!");
 
             var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
             if (!result.Succeeded)
             {
-                return new ApiErrorResult<string>("Wrong password, please try again!");
+                return new ErrorResponse<string>("Wrong password, please try again!");
             }
             else
             {
@@ -62,21 +65,21 @@ namespace QuanLyBanHangVer2.Application.System.Users
                     expires: DateTime.Now.AddHours(3),
                     signingCredentials: creds);
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-                return new ApiSuccessResult<string>(tokenString);
+                return new SuccessResponse<string>(tokenString);
             }
         }
 
-        public async Task<ApiResult<bool>> Create(CreateUserRequest request)
+        public async Task<ResponseBase<bool>> Create(CreateUserRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
 
             if (user != null)
             {
-                return new ApiErrorResult<bool>("UserName already exists");
+                return new ErrorResponse<bool>("UserName already exists");
             }
             if (await _userManager.FindByEmailAsync(request.Email) != null)
             {
-                return new ApiErrorResult<bool>("Email already exists");
+                return new ErrorResponse<bool>("Email already exists");
             }
             user = new AppUser()
             {
@@ -90,25 +93,25 @@ namespace QuanLyBanHangVer2.Application.System.Users
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)
             {
-                return new ApiSuccessResult<bool>(true);
+                return new SuccessResponse<bool>(true);
             }
             else
             {
-                return new ApiErrorResult<bool>("Something when wrongs, please try again!");
+                return new ErrorResponse<bool>("Something when wrongs, please try again!");
             }
         }
 
-        public Task<ApiResult<bool>> Delete(Guid Id)
+        public Task<ResponseBase<bool>> Delete(Guid Id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<ApiResult<UserVm>> GetById(Guid id)
+        public async Task<ResponseBase<UserVm>> GetById(Guid id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
-                return new ApiErrorResult<UserVm>("User not found!");
+                return new ErrorResponse<UserVm>("User not found!");
             }
             var userVm = new UserVm()
             {
@@ -119,105 +122,19 @@ namespace QuanLyBanHangVer2.Application.System.Users
                 UserName = user.UserName,
                 PhoneNumber = user.PhoneNumber
             };
-            return new ApiSuccessResult<UserVm>(userVm);
-            public async Task<ApiResult<UserVm>> GetById(Guid id)
-            {
-                var user = await _userManager.FindByIdAsync(id.ToString());
-                if (user == null)
-                {
-                    return new ApiErrorResult<UserVm>("User not found!");
-                }
-                var userVm = new UserVm()
-                {
-                    Dob = user.Dob,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    UserName = user.UserName,
-                    PhoneNumber = user.PhoneNumber
-                };
-                return new ApiSuccessResult<UserVm>(userVm);
-            }
-            public async Task<ApiResult<UserVm>> GetById(Guid id)
-            {
-                var user = await _userManager.FindByIdAsync(id.ToString());
-                if (user == null)
-                {
-                    return new ApiErrorResult<UserVm>("User not found!");
-                }
-                var userVm = new UserVm()
-                {
-                    Dob = user.Dob,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    UserName = user.UserName,
-                    PhoneNumber = user.PhoneNumber
-                };
-                return new ApiSuccessResult<UserVm>(userVm);
-                public async Task<ApiResult<UserVm>> GetById(Guid id)
-                {
-                    var user = await _userManager.FindByIdAsync(id.ToString());
-                    if (user == null)
-                    {
-                        return new ApiErrorResult<UserVm>("User not found!");
-                    }
-                    var userVm = new UserVm()
-                    {
-                        Dob = user.Dob,
-                        Email = user.Email,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        UserName = user.UserName,
-                        PhoneNumber = user.PhoneNumber
-                    };
-                    return new ApiSuccessResult<UserVm>(userVm);
-                }
-            }
+            return new SuccessResponse<UserVm>(userVm);
         }
 
-        public async Task<ApiResult<PagedResult<UserVm>>> GetUserPaging(GetUserPagingRequest request)
-        {
-            var query = _userManager.Users;
-            var keyword = request.keyword;
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                query.Where(x => x.FirstName.Contains(keyword) ||
-                x.LastName.Contains(keyword) ||
-                x.Email.Contains(keyword) ||
-                x.UserName.Contains(keyword) ||
-                x.Dob.ToString().Contains(keyword)
-                );
-            }
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize)
-            .Select(x => new UserVm()
-            {
-                Id = x.Id,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                Email = x.Email,
-                UserName = x.UserName,
-                Dob = x.Dob,
-            }).ToListAsync();
-
-            var pagedResult = new PagedResult<UserVm>()
-            {
-                Items = data,
-                TotalRecord = data.Count()
-            };
-            return new ApiSuccessResult<PagedResult<UserVm>>(pagedResult);
-        }
-
-        public async Task<ApiResult<string>> Update(Guid id, UserUpdateRequest request)
+        public async Task<ResponseBase<string>> Update(Guid id, UserUpdateRequest request)
         {
             if (await _userManager.Users.AnyAsync(x => x.Email == request.Email && x.Id != id))
             {
-                return new ApiErrorResult<string>("Email already exists");
+                return new ErrorResponse<string>("Email already exists");
             }
             var user = await _userManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
-                return new ApiErrorResult<string>("User not found!");
+                return new ErrorResponse<string>("User not found!");
             }
             user.Dob = request.Dob;
             user.Email = request.Email;
@@ -228,12 +145,43 @@ namespace QuanLyBanHangVer2.Application.System.Users
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
-                return new ApiSuccessResult<string>("Create successful!");
+                return new SuccessResponse<string>("Create successful!");
             }
             else
             {
-                return new ApiErrorResult<string>("Something when wrongs, please try again!");
+                return new ErrorResponse<string>("Something when wrongs, please try again!");
             }
+        }
+
+        public async Task<PagedResponse<List<UserVm>>> UserPaging(UserPagingRequest request)
+        {
+            var query = _userManager.Users;
+            var keyword = request.keyword;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query =query.Where(x => x.FirstName.Contains(keyword) ||
+                x.LastName.Contains(keyword) ||
+                x.Email.Contains(keyword) ||
+                x.UserName.Contains(keyword) ||
+                x.Dob.ToString().Contains(keyword)
+                );
+            }
+            var totalRecords = await query.CountAsync();
+            var validFilter = new PaginationFilter(request.PageNumber, request.PageSize);
+            var data = await query
+                .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(validFilter.PageSize)
+                .Select(x => new UserVm()
+                {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Email = x.Email,
+                    UserName = x.UserName,
+                    Dob = x.Dob,
+                }).ToListAsync();
+            var pagedResponse = PaginationHelper.CreatePagedReponse(data, validFilter, totalRecords);
+            return pagedResponse;
         }
     }
 }

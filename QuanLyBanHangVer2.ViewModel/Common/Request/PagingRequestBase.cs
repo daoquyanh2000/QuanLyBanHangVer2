@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyBanHangVer2.ViewModel.Common
+namespace QuanLyBanHangVer2.ViewModel.Common.Request
 {
     public class PagingRequestBase
     {
-        public int PageIndex { get; set; }
-
+        public int PageNumber { get; set; }
         public int PageSize { get; set; }
     }
 }

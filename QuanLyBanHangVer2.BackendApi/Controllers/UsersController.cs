@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QuanLyBanHangVer2.Application.System.LoggerManager;
 using QuanLyBanHangVer2.Application.System.Users;
 using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
@@ -18,10 +19,12 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUsersService _usersService;
+        private readonly ILoggerManager _logger;
 
-        public UsersController(IUsersService usersService)
+        public UsersController(IUsersService usersService, ILoggerManager logger)
         {
             _usersService = usersService;
+            _logger = logger;
         }
 
         [AllowAnonymous]
@@ -35,13 +38,13 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             else
             {
                 var result = await _usersService.Authenticate(request);
-                if (string.IsNullOrEmpty(result.Items))
+                if (result.Succeeded)
                 {
-                    return BadRequest(result);
+                    return Ok(result);
                 }
                 else
                 {
-                    return Ok(result);
+                    return BadRequest(result);
                 }
             }
         }
@@ -50,7 +53,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
         public async Task<IActionResult> GetById(Guid id)
         {
             var result = await _usersService.GetById(id);
-            if (result.IsSuccessed)
+            if (result.Succeeded)
             {
                 return Ok(result);
             }
@@ -71,9 +74,9 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             else
             {
                 var result = await _usersService.Create(request);
-                if (!result.IsSuccessed)
+                if (!result.Succeeded)
                 {
-                    return BadRequest(result);
+                    return BadRequest(result.Message);
                 }
                 return Ok(result);
             }
@@ -89,7 +92,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             else
             {
                 var result = await _usersService.Update(id, request);
-                if (!result.IsSuccessed)
+                if (!result.Succeeded)
                 {
                     return BadRequest(result);
                 }
@@ -98,9 +101,9 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
         }
 
         [HttpGet("Paging")]
-        public async Task<IActionResult> GetPaging([FromQuery] GetUserPagingRequest request)
+        public async Task<IActionResult> GetPaging([FromQuery] UserPagingRequest request)
         {
-            var result = await _usersService.GetUserPaging(request);
+            var result = await _usersService.UserPaging(request);
             return Ok(result);
         }
     }

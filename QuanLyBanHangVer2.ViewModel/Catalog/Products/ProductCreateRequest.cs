@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using QuanLyBanHangVer2.Data.Entities.Concrete;
-using System.Collections.Generic;
 
 namespace QuanLyBanHangVer2.ViewModel.Catalog.Products
 {

@@ -45,6 +45,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Controllers
             var token = await _userApiClient.Authenticate(request);
             if (string.IsNullOrEmpty(token.Items))
             {
+                ModelState.AddModelError("", token.Message);
                 return View(request);
             }
 

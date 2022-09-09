@@ -30,7 +30,7 @@ namespace QuanLyBanHangVer2.BackendApi.Controllers
             return Ok(product);
         }
 
-        [HttpGet]
+        [HttpGet("Paging")]
         public async Task<IActionResult> GetPaging([FromQuery] PublicProductPagingRequest request)
         {
             var product = await _pulbicProductService.GetAllPagingPublicAsync(request);

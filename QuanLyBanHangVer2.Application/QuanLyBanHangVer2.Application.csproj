@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog" Version="5.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\QuanLyBanHangVer2.Data\QuanLyBanHangVer2.Data.csproj" />
     <ProjectReference Include="..\QuanLyBanHangVer2.Utilities\QuanLyBanHangVer2.Utilities.csproj" />
     <ProjectReference Include="..\QuanLyBanHangVer2.ViewModel\QuanLyBanHangVer2.ViewModel.csproj" />

@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
-using QuanLyBanHangVer2.ViewModel.Common;
 using QuanLyBanHangVer2.ViewModel.Common.Api;
+using QuanLyBanHangVer2.ViewModel.Common.Paging;
+using QuanLyBanHangVer2.ViewModel.Common.Response;
 using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             this.httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<ApiResult<string>> Authenticate(LoginRequest request)
+        public async Task<ResponseBase<string>> Authenticate(LoginRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -37,7 +38,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(token);
+                return JsonConvert.DeserializeObject<SuccessResponse<string>>(token);
             }
             else
             {
@@ -46,7 +47,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             }
         }
 
-        public async Task<ApiResult<string>> Create(CreateUserRequest request)
+        public async Task<ResponseBase<string>> Create(CreateUserRequest request)
         {
             var sessions = httpContextAccessor.HttpContext.Session.GetString("Token");
             var json = JsonConvert.SerializeObject(request);
@@ -58,7 +59,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(result);
+                return JsonConvert.DeserializeObject<SuccessResponse<string>>(result);
             }
             else
             {
@@ -66,7 +67,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             }
         }
 
-        public async Task<ApiResult<UserVm>> GetById(Guid id)
+        public async Task<ResponseBase<UserVm>> GetById(Guid id)
         {
             var sessions = httpContextAccessor.HttpContext.Session.GetString("Token");
 
@@ -77,7 +78,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApiSuccessResult<UserVm>>(body);
+                return JsonConvert.DeserializeObject<SuccessResponse<UserVm>>(body);
             }
             else
             {
@@ -85,7 +86,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             }
         }
 
-        public async Task<ApiResult<PagedResult<UserVm>>> GetPagingUser(GetUserPagingRequest request)
+        public async Task<ResponseBase<PagedResponse<UserVm>>> GetPagingUser(GetUserPagingRequest request)
         {
             var sessions = httpContextAccessor.HttpContext.Session.GetString("Token");
 
@@ -97,7 +98,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApiSuccessResult<PagedResult<UserVm>>>(body);
+                return JsonConvert.DeserializeObject<SuccessResponse<PagedResponse<UserVm>>>(body);
             }
             else
             {
@@ -105,7 +106,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             }
         }
 
-        public async Task<ApiResult<string>> Edit(Guid id, UserUpdateRequest request)
+        public async Task<ResponseBase<string>> Edit(Guid id, UserUpdateRequest request)
         {
             var sessions = httpContextAccessor.HttpContext.Session.GetString("Token");
             var json = JsonConvert.SerializeObject(request);
@@ -117,7 +118,7 @@ namespace QuanLyBanHangVer2.WebAdmin.Services
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(result);
+                return JsonConvert.DeserializeObject<SuccessResponse<string>>(result);
             }
             else
             {

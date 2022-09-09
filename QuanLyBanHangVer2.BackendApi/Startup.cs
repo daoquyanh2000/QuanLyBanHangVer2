@@ -11,17 +11,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NLog;
 using QuanLyBanHangVer2.Application.Catalog.Manage.Products;
 using QuanLyBanHangVer2.Application.Catalog.Products.Manage;
 using QuanLyBanHangVer2.Application.Catalog.Products.Public;
 using QuanLyBanHangVer2.Application.Common;
 using QuanLyBanHangVer2.Application.System.Users;
+using QuanLyBanHangVer2.BackendApi.Extensions;
 using QuanLyBanHangVer2.Data.EF;
 using QuanLyBanHangVer2.Data.Entities.Concrete;
 using QuanLyBanHangVer2.Utilities.Constants;
 using QuanLyBanHangVer2.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,6 +34,7 @@ namespace QuanLyBanHangVer2.BackendApi
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -46,16 +50,8 @@ namespace QuanLyBanHangVer2.BackendApi
                 .AddEntityFrameworkStores<QuanLyBanHangVer2Context>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IStorageService, StorageService>();
-
-            services.AddTransient<IPulbicProductService, PulbicProductService>();
-            services.AddTransient<IManageProductService, ManageProductService>();
-
-            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
-            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
-            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
-            services.AddTransient<IUsersService, UserService>();
-
+            services.AddHttpContextAccessor();
+            services.InjectionService();
             services.AddControllers();
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<LoginRequestValidatior>();

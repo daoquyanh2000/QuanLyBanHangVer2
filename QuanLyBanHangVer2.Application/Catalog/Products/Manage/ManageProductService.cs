@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using QuanLyBanHangVer2.Application.Catalog.Products.Manage;
 using QuanLyBanHangVer2.Application.Common;
+using QuanLyBanHangVer2.Application.Helper;
 using QuanLyBanHangVer2.Data.EF;
 using QuanLyBanHangVer2.Data.Entities.Concrete;
-using QuanLyBanHangVer2.ViewModel.Catalog.ProductImages;
 using QuanLyBanHangVer2.ViewModel.Catalog.Products;
-using QuanLyBanHangVer2.ViewModel.Common;
+using QuanLyBanHangVer2.ViewModel.Common.Paging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +21,9 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
         private readonly QuanLyBanHangVer2Context _context;
         private readonly IStorageService _storageService;
 
-        public ManageProductService(QuanLyBanHangVer2Context context, IStorageService storageService)
+        public ManageProductService(
+            QuanLyBanHangVer2Context context,
+            IStorageService storageService)
         {
             _context = context;
             _storageService = storageService;
@@ -89,7 +91,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(ManageProductPagingRequest request)
+        public async Task<PagedResponse<List<ProductViewModel>>> GetAllPaging(ManageProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
@@ -104,7 +106,9 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
             {
                 query = query.Where(q => request.CategoryId == q.pic.CategoryId);
             }
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize)
+            var validFilter = new PaginationFilter(request.PageNumber, request.PageSize);
+            var totalRecords = await query.CountAsync();
+            var data = await query.Skip((validFilter.PageNumber - 1) * validFilter.PageSize).Take(validFilter.PageSize)
                 .Select(x => new ProductViewModel()
                 {
                     Id = x.p.Id,
@@ -121,11 +125,7 @@ namespace QuanLyBanHangVer2.Application.Catalog.Manage.Products
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount
                 }).ToListAsync();
-            var pageResult = new PagedResult<ProductViewModel>()
-            {
-                TotalRecord = await query.CountAsync(),
-                Items = data,
-            };
+            var pageResult = PaginationHelper.CreatePagedReponse(data, validFilter, totalRecords);
             return pageResult;
         }
 

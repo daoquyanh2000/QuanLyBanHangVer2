@@ -1,5 +1,4 @@
-﻿using QuanLyBanHangVer2.ViewModel.Common;
-using System.Collections.Generic;
+﻿using QuanLyBanHangVer2.ViewModel.Common.Request;
 
 namespace QuanLyBanHangVer2.ViewModel.Catalog.Products
 {

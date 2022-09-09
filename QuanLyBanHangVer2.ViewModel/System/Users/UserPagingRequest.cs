@@ -1,8 +1,9 @@
-﻿using QuanLyBanHangVer2.ViewModel.Common;
+﻿using QuanLyBanHangVer2.ViewModel.Common.Paging;
+using QuanLyBanHangVer2.ViewModel.Common.Request;
 
 namespace QuanLyBanHangVer2.ViewModel.System.Users
 {
-    public class GetUserPagingRequest : PagingRequestBase
+    public class UserPagingRequest :PagingRequestBase
     {
         public string keyword { get; set; }
     }

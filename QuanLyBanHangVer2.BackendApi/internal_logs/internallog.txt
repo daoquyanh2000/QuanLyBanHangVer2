@@ -1,0 +1,552 @@
+2022-09-08 10:25:00.1626 Info Message Template Auto Format enabled
+2022-09-08 10:25:00.2345 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-09-08 10:25:00.3587 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-09-08 10:25:00.3587 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:25:00.3660 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:25:00.3660 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:25:00.3660 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:25:00.3660 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:25:00.3660 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:25:00.3660 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:25:00.3660 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:25:00.3660 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:25:00.3660 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:25:00.3660 Info Adding target FileTarget(Name=logfile)
+2022-09-08 10:25:00.3660 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-09-08 10:25:00.3660 Trace ParseRulesElement
+2022-09-08 10:25:00.3846 Debug Watching file-filter 'nlog.config' in directory: C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi
+2022-09-08 10:25:00.3846 Debug --- NLog configuration dump ---
+2022-09-08 10:25:00.3846 Debug Targets:
+2022-09-08 10:25:00.3846 Debug FileTarget(Name=logfile)
+2022-09-08 10:25:00.3846 Debug Rules:
+2022-09-08 10:25:00.3846 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]
+2022-09-08 10:25:00.3846 Debug --- End of NLog configuration dump ---
+2022-09-08 10:25:00.3846 Trace FindReachableObject<System.Object>:
+2022-09-08 10:25:00.3846 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]'
+2022-09-08 10:25:00.3846 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-09-08 10:25:00.3846 Trace  Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-08 10:25:00.3846 Trace   Scanning Property FileName 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-08 10:25:00.3846 Trace   Scanning SimpleLayout 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:25:00.3846 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:25:00.3846 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:25:00.3846 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:25:00.3846 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:25:00.3846 Trace   Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-08 10:25:00.3846 Trace   Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:25:00.3846 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:25:00.3846 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:25:00.3846 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:25:00.3846 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:25:00.3846 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:25:00.3846 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:25:00.3846 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-08 10:25:00.3846 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-09-08 10:25:00.3846 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-09-08 10:25:00.3987 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi\nlog.config
+2022-09-08 10:25:00.3987 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-09-08 10:25:00.3987 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-09-08 10:25:00.3987 Trace Initializing Layout Renderer: ${message}
+2022-09-08 10:25:00.3987 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:25:00.3987 Trace Initializing Layout Renderer: ${level}
+2022-09-08 10:25:00.3987 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:25:00.3987 Trace Initializing Layout Renderer: ${longdate}
+2022-09-08 10:25:00.3987 Trace Initializing ${longdate} ${level:uppercase=true} ${message}
+2022-09-08 10:25:00.3987 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:25:00.3987 Trace Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:25:00.3987 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:25:00.3987 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:25:00.3987 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:25:00.3987 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:25:00.3987 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:25:00.3987 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:25:00.3987 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:25:00.3987 Trace Initializing Layout Renderer: ${shortdate}
+2022-09-08 10:25:00.3987 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:25:00.3987 Trace Initializing C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt
+2022-09-08 10:25:00.3987 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:25:00.3987 Trace Scanning SimpleLayout 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:25:00.3987 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:25:00.3987 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:25:00.3987 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:25:00.4139 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:25:00.4139 Trace Initializing FileTarget(Name=logfile)
+2022-09-08 10:25:00.4139 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-09-08 10:25:00.4139 Trace Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-08 10:25:00.4139 Trace  Scanning Property FileName 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-08 10:25:00.4139 Trace  Scanning SimpleLayout 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:25:00.4139 Trace  Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-08 10:25:00.4139 Trace  Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:25:00.4139 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-08 10:25:00.4139 Trace FileTarget(Name=logfile) has 2 layouts
+2022-09-08 10:25:00.4139 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.SingleProcessFileAppender+Factory
+2022-09-08 10:26:59.6628 Debug Targets configured when LogLevel >= Debug for Logger: QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager
+2022-09-08 10:26:59.6628 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Debug] => logfile
+2022-09-08 10:26:59.6628 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Info] => logfile
+2022-09-08 10:26:59.6628 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Warn] => logfile
+2022-09-08 10:26:59.6628 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Error] => logfile
+2022-09-08 10:26:59.6628 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Fatal] => logfile
+2022-09-08 10:26:59.6812 Debug FileTarget(Name=logfile): Preparing for new file 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt'
+2022-09-08 10:26:59.6812 Debug FileTarget(Name=logfile): Creating file appender: C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt
+2022-09-08 10:26:59.6812 Trace FileTarget(Name=logfile): Opening C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt with allowFileSharedWriting=False
+2022-09-08 10:26:59.6812 Debug FileTarget(Name=logfile): DirectoryNotFoundException - Attempting to create directory for FileName: C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt
+2022-09-08 10:27:34.6656 Info Configuration file change detected! Reloading in 1000ms...
+2022-09-08 10:27:35.6907 Info Reloading configuration...
+2022-09-08 10:27:35.6907 Info Loading NLog config from XML file: C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi\nlog.config
+2022-09-08 10:27:35.6907 Trace ParseNLogElement
+2022-09-08 10:27:35.6907 Trace ParseNLogConfig
+2022-09-08 10:27:35.6907 Info Message Template Auto Format enabled
+2022-09-08 10:27:35.6907 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-09-08 10:27:35.6907 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:27:35.6944 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:35.6944 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:27:35.6944 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:27:35.6944 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:35.6944 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:27:35.6944 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:35.6944 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:27:35.6944 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:35.6944 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:27:35.6944 Info Adding target FileTarget(Name=logfile)
+2022-09-08 10:27:35.6944 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-09-08 10:27:35.6944 Trace ParseRulesElement
+2022-09-08 10:27:35.6944 Debug Stopping file watching for path 'C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi' filter 'nlog.config'
+2022-09-08 10:27:35.6944 Info Closing old configuration.
+2022-09-08 10:27:35.6944 Debug LogFactory Flush with timeout=15 secs
+2022-09-08 10:27:35.6944 Trace Flushing all 1 targets...
+2022-09-08 10:27:35.6944 Trace ForEachItemInParallel() 1 items
+2022-09-08 10:27:35.6944 Trace FileTarget(Name=logfile): FlushAsync
+2022-09-08 10:27:35.6944 Trace Continuation invoked: 
+2022-09-08 10:27:35.6944 Trace Parallel task completed. 0 items remaining
+2022-09-08 10:27:35.6944 Debug Flush completed
+2022-09-08 10:27:35.6944 Trace FileTarget(Name=logfile): FlushAsync Done
+2022-09-08 10:27:35.6944 Debug Closing logging configuration...
+2022-09-08 10:27:35.6944 Trace Closing FileTarget(Name=logfile)
+2022-09-08 10:27:35.6944 Debug FileTarget(Name=logfile): Closing...
+2022-09-08 10:27:35.6944 Trace FileTarget(Name=logfile): FinalizeFile 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt, isArchiving: False'
+2022-09-08 10:27:35.6944 Debug FileTarget(Name=logfile): FileAppender Closing Invalidate - C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt
+2022-09-08 10:27:35.6944 Trace FileTarget: Closing 'C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt'
+2022-09-08 10:27:35.7109 Debug FileTarget(Name=logfile): Closed.
+2022-09-08 10:27:35.7109 Trace Closing C:/Users/quy anh/source\repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt
+2022-09-08 10:27:35.7109 Trace Closing Layout Renderer: ${literal}
+2022-09-08 10:27:35.7109 Trace Closing Layout Renderer: ${shortdate}
+2022-09-08 10:27:35.7109 Trace Closing Layout Renderer: ${literal}
+2022-09-08 10:27:35.7109 Trace Closing ${longdate} ${level:uppercase=true} ${message}
+2022-09-08 10:27:35.7109 Trace Closing Layout Renderer: ${longdate}
+2022-09-08 10:27:35.7109 Trace Closing Layout Renderer: ${literal}
+2022-09-08 10:27:35.7109 Trace Closing Layout Renderer: ${level}
+2022-09-08 10:27:35.7109 Trace Closing Layout Renderer: ${literal}
+2022-09-08 10:27:35.7109 Trace Closing Layout Renderer: ${message}
+2022-09-08 10:27:35.7109 Debug Finished closing logging configuration.
+2022-09-08 10:27:35.7109 Debug Watching file-filter 'nlog.config' in directory: C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi
+2022-09-08 10:27:35.7109 Debug --- NLog configuration dump ---
+2022-09-08 10:27:35.7109 Debug Targets:
+2022-09-08 10:27:35.7109 Debug FileTarget(Name=logfile)
+2022-09-08 10:27:35.7109 Debug Rules:
+2022-09-08 10:27:35.7109 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]
+2022-09-08 10:27:35.7109 Debug --- End of NLog configuration dump ---
+2022-09-08 10:27:35.7109 Trace FindReachableObject<System.Object>:
+2022-09-08 10:27:35.7109 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]'
+2022-09-08 10:27:35.7109 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-09-08 10:27:35.7109 Trace  Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-08 10:27:35.7109 Trace   Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-08 10:27:35.7109 Trace   Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:27:35.7109 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:27:35.7109 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:35.7109 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:27:35.7109 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:35.7109 Trace   Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-08 10:27:35.7109 Trace   Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:27:35.7109 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:27:35.7109 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:27:35.7109 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:35.7109 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:27:35.7109 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:35.7109 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:27:35.7109 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-08 10:27:35.7109 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-09-08 10:27:35.7109 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-09-08 10:27:35.7109 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi\nlog.config
+2022-09-08 10:27:35.7109 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-09-08 10:27:35.7109 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-09-08 10:27:35.7109 Trace Initializing Layout Renderer: ${message}
+2022-09-08 10:27:35.7109 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:27:35.7109 Trace Initializing Layout Renderer: ${level}
+2022-09-08 10:27:35.7109 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:27:35.7109 Trace Initializing Layout Renderer: ${longdate}
+2022-09-08 10:27:35.7109 Trace Initializing ${longdate} ${level:uppercase=true} ${message}
+2022-09-08 10:27:35.7109 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:35.7109 Trace Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:27:35.7109 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:27:35.7109 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:27:35.7109 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:35.7109 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:27:35.7109 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:35.7109 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:27:35.7109 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:27:35.7109 Trace Initializing Layout Renderer: ${shortdate}
+2022-09-08 10:27:35.7109 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:27:35.7109 Trace Initializing C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt
+2022-09-08 10:27:35.7109 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:35.7109 Trace Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:27:35.7109 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:27:35.7109 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:35.7109 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:27:35.7109 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:35.7109 Trace Initializing FileTarget(Name=logfile)
+2022-09-08 10:27:35.7109 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-09-08 10:27:35.7109 Trace Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-08 10:27:35.7109 Trace  Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-08 10:27:35.7109 Trace  Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:27:35.7109 Trace  Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-08 10:27:35.7109 Trace  Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:27:35.7109 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-08 10:27:35.7109 Trace FileTarget(Name=logfile) has 2 layouts
+2022-09-08 10:27:35.7250 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.SingleProcessFileAppender+Factory
+2022-09-08 10:27:35.7250 Debug Targets configured when LogLevel >= Debug for Logger: QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager
+2022-09-08 10:27:35.7250 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Debug] => logfile
+2022-09-08 10:27:35.7250 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Info] => logfile
+2022-09-08 10:27:35.7250 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Warn] => logfile
+2022-09-08 10:27:35.7250 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Error] => logfile
+2022-09-08 10:27:35.7250 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Fatal] => logfile
+2022-09-08 10:27:53.5507 Info Message Template Auto Format enabled
+2022-09-08 10:27:53.5703 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-09-08 10:27:53.6043 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-09-08 10:27:53.6043 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:27:53.6043 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:53.6043 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:27:53.6043 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:27:53.6043 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:53.6043 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:27:53.6171 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:53.6171 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:27:53.6171 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:53.6171 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:27:53.6171 Info Adding target FileTarget(Name=logfile)
+2022-09-08 10:27:53.6171 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-09-08 10:27:53.6171 Trace ParseRulesElement
+2022-09-08 10:27:53.6171 Debug Watching file-filter 'nlog.config' in directory: C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi
+2022-09-08 10:27:53.6171 Debug --- NLog configuration dump ---
+2022-09-08 10:27:53.6171 Debug Targets:
+2022-09-08 10:27:53.6171 Debug FileTarget(Name=logfile)
+2022-09-08 10:27:53.6171 Debug Rules:
+2022-09-08 10:27:53.6319 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]
+2022-09-08 10:27:53.6319 Debug --- End of NLog configuration dump ---
+2022-09-08 10:27:53.6319 Trace FindReachableObject<System.Object>:
+2022-09-08 10:27:53.6319 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]'
+2022-09-08 10:27:53.6319 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-09-08 10:27:53.6319 Trace  Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-08 10:27:53.6319 Trace   Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-08 10:27:53.6319 Trace   Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:27:53.6319 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:27:53.6319 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:53.6319 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:27:53.6319 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:53.6319 Trace   Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-08 10:27:53.6319 Trace   Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:27:53.6319 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:27:53.6319 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:27:53.6319 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:53.6319 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:27:53.6319 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:53.6319 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:27:53.6319 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-08 10:27:53.6319 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-09-08 10:27:53.6319 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-09-08 10:27:53.6319 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi\nlog.config
+2022-09-08 10:27:53.6319 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-09-08 10:27:53.6319 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-09-08 10:27:53.6476 Trace Initializing Layout Renderer: ${message}
+2022-09-08 10:27:53.6476 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:27:53.6476 Trace Initializing Layout Renderer: ${level}
+2022-09-08 10:27:53.6476 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:27:53.6476 Trace Initializing Layout Renderer: ${longdate}
+2022-09-08 10:27:53.6476 Trace Initializing ${longdate} ${level:uppercase=true} ${message}
+2022-09-08 10:27:53.6476 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:53.6476 Trace Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:27:53.6476 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:27:53.6476 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 10:27:53.6476 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:53.6476 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 10:27:53.6476 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:53.6476 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 10:27:53.6476 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:27:53.6476 Trace Initializing Layout Renderer: ${shortdate}
+2022-09-08 10:27:53.6476 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 10:27:53.6476 Trace Initializing C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt
+2022-09-08 10:27:53.6476 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 10:27:53.6476 Trace Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:27:53.6476 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 10:27:53.6476 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:53.6476 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 10:27:53.6476 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 10:27:53.6476 Trace Initializing FileTarget(Name=logfile)
+2022-09-08 10:27:53.6476 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-09-08 10:27:53.6476 Trace Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-08 10:27:53.6476 Trace  Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-08 10:27:53.6476 Trace  Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 10:27:53.6476 Trace  Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-08 10:27:53.6476 Trace  Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 10:27:53.6476 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-08 10:27:53.6476 Trace FileTarget(Name=logfile) has 2 layouts
+2022-09-08 10:27:53.6476 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.SingleProcessFileAppender+Factory
+2022-09-08 10:28:07.2865 Debug Targets configured when LogLevel >= Debug for Logger: QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager
+2022-09-08 10:28:07.2865 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Debug] => logfile
+2022-09-08 10:28:07.2865 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Info] => logfile
+2022-09-08 10:28:07.2865 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Warn] => logfile
+2022-09-08 10:28:07.2865 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Error] => logfile
+2022-09-08 10:28:07.2878 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Fatal] => logfile
+2022-09-08 10:28:07.2878 Debug FileTarget(Name=logfile): Preparing for new file 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt'
+2022-09-08 10:28:07.3054 Debug FileTarget(Name=logfile): Creating file appender: C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt
+2022-09-08 10:28:07.3054 Trace FileTarget(Name=logfile): Opening C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt with allowFileSharedWriting=False
+2022-09-08 14:11:01.7857 Info Message Template Auto Format enabled
+2022-09-08 14:11:01.8425 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-09-08 14:11:01.9513 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-09-08 14:11:01.9513 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 14:11:01.9513 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 14:11:01.9604 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 14:11:01.9604 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 14:11:01.9604 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 14:11:01.9604 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 14:11:01.9604 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 14:11:01.9604 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 14:11:01.9604 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 14:11:01.9604 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 14:11:01.9604 Info Adding target FileTarget(Name=logfile)
+2022-09-08 14:11:01.9604 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-09-08 14:11:01.9604 Trace ParseRulesElement
+2022-09-08 14:11:01.9761 Debug Watching file-filter 'nlog.config' in directory: C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi
+2022-09-08 14:11:01.9761 Debug --- NLog configuration dump ---
+2022-09-08 14:11:01.9761 Debug Targets:
+2022-09-08 14:11:01.9761 Debug FileTarget(Name=logfile)
+2022-09-08 14:11:01.9761 Debug Rules:
+2022-09-08 14:11:01.9761 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]
+2022-09-08 14:11:01.9761 Debug --- End of NLog configuration dump ---
+2022-09-08 14:11:01.9761 Trace FindReachableObject<System.Object>:
+2022-09-08 14:11:01.9761 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]'
+2022-09-08 14:11:01.9761 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-09-08 14:11:01.9761 Trace  Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-08 14:11:01.9761 Trace   Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-08 14:11:01.9761 Trace   Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 14:11:01.9761 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 14:11:01.9761 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 14:11:01.9761 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 14:11:01.9761 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 14:11:01.9761 Trace   Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-08 14:11:01.9761 Trace   Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 14:11:01.9761 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 14:11:01.9761 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 14:11:01.9761 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 14:11:01.9761 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 14:11:01.9761 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 14:11:01.9761 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 14:11:01.9761 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-08 14:11:01.9761 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-09-08 14:11:01.9761 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-09-08 14:11:01.9908 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi\nlog.config
+2022-09-08 14:11:01.9908 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-09-08 14:11:01.9908 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-09-08 14:11:01.9908 Trace Initializing Layout Renderer: ${message}
+2022-09-08 14:11:01.9908 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 14:11:01.9908 Trace Initializing Layout Renderer: ${level}
+2022-09-08 14:11:01.9908 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 14:11:01.9908 Trace Initializing Layout Renderer: ${longdate}
+2022-09-08 14:11:01.9908 Trace Initializing ${longdate} ${level:uppercase=true} ${message}
+2022-09-08 14:11:01.9908 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 14:11:01.9908 Trace Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 14:11:01.9908 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 14:11:01.9908 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-08 14:11:01.9908 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 14:11:01.9908 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-08 14:11:01.9908 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 14:11:01.9908 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-08 14:11:01.9908 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 14:11:01.9908 Trace Initializing Layout Renderer: ${shortdate}
+2022-09-08 14:11:01.9908 Trace Initializing Layout Renderer: ${literal}
+2022-09-08 14:11:01.9908 Trace Initializing C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt
+2022-09-08 14:11:01.9908 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-08 14:11:01.9908 Trace Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 14:11:01.9908 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-08 14:11:02.0065 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 14:11:02.0065 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-08 14:11:02.0065 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-08 14:11:02.0065 Trace Initializing FileTarget(Name=logfile)
+2022-09-08 14:11:02.0065 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-09-08 14:11:02.0065 Trace Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-08 14:11:02.0065 Trace  Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-08 14:11:02.0065 Trace  Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-08 14:11:02.0065 Trace  Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-08 14:11:02.0065 Trace  Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-08 14:11:02.0065 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-08 14:11:02.0065 Trace FileTarget(Name=logfile) has 2 layouts
+2022-09-08 14:11:02.0065 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.SingleProcessFileAppender+Factory
+2022-09-08 14:11:28.7997 Debug Targets configured when LogLevel >= Debug for Logger: QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager
+2022-09-08 14:11:28.7997 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Debug] => logfile
+2022-09-08 14:11:28.7997 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Info] => logfile
+2022-09-08 14:11:28.7997 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Warn] => logfile
+2022-09-08 14:11:28.7997 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Error] => logfile
+2022-09-08 14:11:28.7997 Debug Logger QuanLyBanHangVer2.Application.System.LoggerManager.LoggerManager [Fatal] => logfile
+2022-09-08 14:11:28.8051 Debug FileTarget(Name=logfile): Preparing for new file 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt'
+2022-09-08 14:11:28.8198 Debug FileTarget(Name=logfile): Creating file appender: C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt
+2022-09-08 14:11:28.8198 Trace FileTarget(Name=logfile): Opening C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/2022-09-08_logfile.txt with allowFileSharedWriting=False
+2022-09-09 08:54:25.5716 Info Message Template Auto Format enabled
+2022-09-09 08:54:25.5939 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-09-09 08:54:25.6464 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-09-09 08:54:25.6483 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-09 08:54:25.6483 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 08:54:25.6483 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-09 08:54:25.6483 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-09-09 08:54:25.6483 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 08:54:25.6483 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-09 08:54:25.6483 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 08:54:25.6483 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-09 08:54:25.6483 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 08:54:25.6483 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-09 08:54:25.6483 Info Adding target FileTarget(Name=logfile)
+2022-09-09 08:54:25.6483 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-09-09 08:54:25.6483 Trace ParseRulesElement
+2022-09-09 08:54:25.6714 Debug Watching file-filter 'nlog.config' in directory: C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi
+2022-09-09 08:54:25.6714 Debug --- NLog configuration dump ---
+2022-09-09 08:54:25.6714 Debug Targets:
+2022-09-09 08:54:25.6714 Debug FileTarget(Name=logfile)
+2022-09-09 08:54:25.6714 Debug Rules:
+2022-09-09 08:54:25.6714 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]
+2022-09-09 08:54:25.6714 Debug --- End of NLog configuration dump ---
+2022-09-09 08:54:25.6714 Trace FindReachableObject<System.Object>:
+2022-09-09 08:54:25.6714 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]'
+2022-09-09 08:54:25.6714 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-09-09 08:54:25.6791 Trace  Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-09 08:54:25.6791 Trace   Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-09 08:54:25.6791 Trace   Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-09 08:54:25.6791 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-09 08:54:25.6791 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 08:54:25.6791 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-09 08:54:25.6791 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 08:54:25.6791 Trace   Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-09 08:54:25.6791 Trace   Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-09 08:54:25.6791 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-09 08:54:25.6791 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-09 08:54:25.6791 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 08:54:25.6791 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-09 08:54:25.6791 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 08:54:25.6791 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-09 08:54:25.6791 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-09 08:54:25.6791 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-09-09 08:54:25.6791 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-09-09 08:54:25.6791 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi\nlog.config
+2022-09-09 08:54:25.6791 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-09-09 08:54:25.6791 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-09-09 08:54:25.6791 Trace Initializing Layout Renderer: ${message}
+2022-09-09 08:54:25.6791 Trace Initializing Layout Renderer: ${literal}
+2022-09-09 08:54:25.6791 Trace Initializing Layout Renderer: ${level}
+2022-09-09 08:54:25.6791 Trace Initializing Layout Renderer: ${literal}
+2022-09-09 08:54:25.6791 Trace Initializing Layout Renderer: ${longdate}
+2022-09-09 08:54:25.6791 Trace Initializing ${longdate} ${level:uppercase=true} ${message}
+2022-09-09 08:54:25.6791 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 08:54:25.6791 Trace Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-09 08:54:25.6791 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-09 08:54:25.6791 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-09 08:54:25.6791 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 08:54:25.6791 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-09 08:54:25.6791 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 08:54:25.6791 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-09 08:54:25.6952 Trace Initializing Layout Renderer: ${literal}
+2022-09-09 08:54:25.6952 Trace Initializing Layout Renderer: ${shortdate}
+2022-09-09 08:54:25.6952 Trace Initializing Layout Renderer: ${literal}
+2022-09-09 08:54:25.6952 Trace Initializing C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt
+2022-09-09 08:54:25.6952 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 08:54:25.6952 Trace Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-09 08:54:25.6952 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-09 08:54:25.6952 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 08:54:25.6952 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-09 08:54:25.6952 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 08:54:25.6952 Trace Initializing FileTarget(Name=logfile)
+2022-09-09 08:54:25.6952 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-09-09 08:54:25.6952 Trace Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-09 08:54:25.6952 Trace  Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-09 08:54:25.6952 Trace  Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-09 08:54:25.6952 Trace  Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-09 08:54:25.6952 Trace  Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-09 08:54:25.6952 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-09 08:54:25.6952 Trace FileTarget(Name=logfile) has 2 layouts
+2022-09-09 08:54:25.6952 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.SingleProcessFileAppender+Factory
+2022-09-09 16:51:37.7881 Info Message Template Auto Format enabled
+2022-09-09 16:51:37.8463 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-09-09 16:51:37.9442 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-09-09 16:51:37.9442 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-09 16:51:37.9442 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 16:51:37.9442 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-09 16:51:37.9442 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-09-09 16:51:37.9442 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 16:51:37.9442 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-09 16:51:37.9442 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 16:51:37.9442 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-09 16:51:37.9442 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 16:51:37.9597 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-09 16:51:37.9597 Info Adding target FileTarget(Name=logfile)
+2022-09-09 16:51:37.9597 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-09-09 16:51:37.9597 Trace ParseRulesElement
+2022-09-09 16:51:37.9597 Debug Watching file-filter 'nlog.config' in directory: C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi
+2022-09-09 16:51:37.9597 Debug --- NLog configuration dump ---
+2022-09-09 16:51:37.9597 Debug Targets:
+2022-09-09 16:51:37.9597 Debug FileTarget(Name=logfile)
+2022-09-09 16:51:37.9597 Debug Rules:
+2022-09-09 16:51:37.9755 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]
+2022-09-09 16:51:37.9755 Debug --- End of NLog configuration dump ---
+2022-09-09 16:51:37.9755 Trace FindReachableObject<System.Object>:
+2022-09-09 16:51:37.9755 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]'
+2022-09-09 16:51:37.9755 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-09-09 16:51:37.9755 Trace  Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-09 16:51:37.9755 Trace   Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-09 16:51:37.9755 Trace   Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-09 16:51:37.9755 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-09 16:51:37.9755 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 16:51:37.9755 Trace    Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-09 16:51:37.9755 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 16:51:37.9755 Trace   Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-09 16:51:37.9755 Trace   Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-09 16:51:37.9755 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-09 16:51:37.9755 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-09 16:51:37.9755 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 16:51:37.9755 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-09 16:51:37.9755 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 16:51:37.9755 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-09 16:51:37.9755 Trace   Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-09 16:51:37.9755 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-09-09 16:51:37.9755 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-09-09 16:51:37.9755 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\quy anh\source\repos\daoquyanh2000\QuanLyBanHangVer2\QuanLyBanHangVer2.BackendApi\nlog.config
+2022-09-09 16:51:37.9755 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-09-09 16:51:37.9920 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-09-09 16:51:37.9920 Trace Initializing Layout Renderer: ${message}
+2022-09-09 16:51:37.9920 Trace Initializing Layout Renderer: ${literal}
+2022-09-09 16:51:37.9920 Trace Initializing Layout Renderer: ${level}
+2022-09-09 16:51:37.9920 Trace Initializing Layout Renderer: ${literal}
+2022-09-09 16:51:37.9920 Trace Initializing Layout Renderer: ${longdate}
+2022-09-09 16:51:37.9920 Trace Initializing ${longdate} ${level:uppercase=true} ${message}
+2022-09-09 16:51:37.9920 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 16:51:37.9920 Trace Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-09 16:51:37.9920 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-09 16:51:37.9920 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-09-09 16:51:37.9920 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 16:51:37.9920 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-09-09 16:51:37.9920 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 16:51:37.9920 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-09-09 16:51:37.9920 Trace Initializing Layout Renderer: ${literal}
+2022-09-09 16:51:37.9920 Trace Initializing Layout Renderer: ${shortdate}
+2022-09-09 16:51:37.9920 Trace Initializing Layout Renderer: ${literal}
+2022-09-09 16:51:37.9920 Trace Initializing C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt
+2022-09-09 16:51:37.9920 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-09-09 16:51:37.9920 Trace Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-09 16:51:37.9920 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-09-09 16:51:37.9920 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 16:51:37.9920 Trace  Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-09-09 16:51:37.9920 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-09-09 16:51:37.9920 Trace Initializing FileTarget(Name=logfile)
+2022-09-09 16:51:37.9920 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-09-09 16:51:37.9920 Trace Scanning FileTarget 'FileTarget(Name=logfile)'
+2022-09-09 16:51:37.9920 Trace  Scanning Property FileName 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt' NLog.Layouts
+2022-09-09 16:51:37.9920 Trace  Scanning SimpleLayout 'C:/Users/quy anh/source/repos/daoquyanh2000/QuanLyBanHangVer2/QuanLyBanHangVer2.BackendApi/logs/${shortdate}_logfile.txt'
+2022-09-09 16:51:37.9920 Trace  Scanning Property Layout '${longdate} ${level:uppercase=true} ${message}' NLog.Layouts
+2022-09-09 16:51:37.9920 Trace  Scanning SimpleLayout '${longdate} ${level:uppercase=true} ${message}'
+2022-09-09 16:51:37.9920 Trace  Scanning Property LineEnding 'Default' NLog.Targets
+2022-09-09 16:51:37.9920 Trace FileTarget(Name=logfile) has 2 layouts
+2022-09-09 16:51:37.9920 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.SingleProcessFileAppender+Factory
